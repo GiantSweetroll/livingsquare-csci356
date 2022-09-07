@@ -6,7 +6,7 @@ public class RotationController : MonoBehaviour
 {
     public float SENS_HOR = 3.0F;
     public float SENS_VER = 2.0F;
-    GameObject character;      // A parent object the camera is attached to
+    [HideInInspector] public GameObject character;      // A parent object the camera is attached to
 
     // Start is called before the first frame update
     void Start()
