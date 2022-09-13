@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BecomeEthereal : MonoBehaviour
 {
-    public GameObject spiritObject, camera;
+    public GameObject spiritObject;
+	public new GameObject camera; //fixed hidden inherited camera warning
     public float duration = 5;
 
     private Transform physicalBodyTf;

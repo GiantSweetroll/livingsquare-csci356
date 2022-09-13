@@ -17,7 +17,6 @@ public class RotationController : MonoBehaviour
         character = this.transform.parent.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var mouseMove = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -28,7 +27,8 @@ public class RotationController : MonoBehaviour
         transform.Rotate(-mouseMove.y, 0, 0);
 
         // enable the mouse cursor if Esc pressed
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape")){
             Cursor.lockState = CursorLockMode.None;
+		}
     }
 }
