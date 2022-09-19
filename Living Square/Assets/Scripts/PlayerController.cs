@@ -17,13 +17,13 @@ should Includes:
 
 public class PlayerController : MonoBehaviour{
 
-/*==============================================================================
-								VARIABLES
-==============================================================================*/
+	/*==============================================================================
+									VARIABLES
+	==============================================================================*/
 	//player settings variables
-    public float SENS_HOR = 3f;
-    public float SENS_VER = 2f;
-    public float SPEED = 5f;
+	public float SENS_HOR = 3f;
+	public float SENS_VER = 2f;
+	public float SPEED = 5f;
 	public float DURATION = 6f;
 
 	//player internal variables
@@ -67,49 +67,36 @@ public class PlayerController : MonoBehaviour{
     // Update is called once per frame
 	//should only be used to get input and non physics related code
     void Update(){
-		if(!isInstantiated){
-			//get inputs
-	        mvX = Input.GetAxis("Horizontal");
-	        mvZ = Input.GetAxis("Vertical");
-	        mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
-			mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER;
 
-			//rotate around y axis for body
-	        transform.Rotate(0, mouseX, 0);
-			//rotate camera according to mouse
-	        cameraTf.Rotate(-mouseY, 0, 0);
+		//get inputs
+		mvX = Input.GetAxis("Horizontal");
+		mvZ = Input.GetAxis("Vertical");
+		mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
+		mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER;
 
-			// enable the mouse cursor if Esc pressed
-    	    if(Input.GetKeyDown("escape")){
-    	        Cursor.lockState = CursorLockMode.None;
-			}
+		//rotate around y axis for body
+		transform.Rotate(0, mouseX, 0);
+		//rotate camera according to mouse
+		cameraTf.Rotate(-mouseY, 0, 0);
 
-			//switch to ethereal
-	        if(Input.GetKeyDown(KeyCode.Z)){
-				isInstantiated = true;
-				etherealTimer = DURATION;
-				EtherealInstance = Instantiate(EtherealPrefab, transform.position, transform.rotation);
-				aMainCamera.transform.parent = EtherealInstance.transform;
-	        }
+		//switch to ethereal
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			SwitchEtherealMode(!isInstantiated);
 		}
-		//instantiated
-		else{
-            // If the ethereal mode timer ran out, return to physical body
-            if(etherealTimer <= 0){
-				//reset to original body
-				aMainCamera.transform.parent = this.transform;
-				aMainCamera.transform.rotation = this.transform.rotation; 
-				aMainCamera.transform.position = this.transform.position; 
 
-				//destroy the instance
-				Destroy(EtherealInstance);
-				//reset
-				isInstantiated = false;
-				etherealTimer = DURATION;
+		// If ethereal form object is instantiated
+		if (isInstantiated){
+
+			// If the ethereal mode timer ran out, return to physical body
+			if (etherealTimer <= 0)
+			{
+				SwitchEtherealMode(false);
 			}
-            // Otherwise, reduce the timer every second
-            else{
-                etherealTimer -= Time.deltaTime;
+			// Otherwise, reduce the timer every second
+			else
+			{
+				etherealTimer -= Time.deltaTime;
 			}
 		}
     }
@@ -126,5 +113,36 @@ public class PlayerController : MonoBehaviour{
 			//move body
 			thisRBody.MovePosition(transform.position + mvDir * Time.fixedDeltaTime * SPEED);
 		}
+	}
+
+
+/*==============================================================================
+								SWITCH_ETHEREAL_MODE
+==============================================================================*/
+	private void SwitchEtherealMode(bool isEthereal)
+    {
+		isInstantiated = isEthereal;
+
+		// Enable ethereal mode
+		if (isEthereal)
+        {
+			// Create Ethereal form object
+			EtherealInstance = Instantiate(EtherealPrefab, transform.position, transform.rotation);
+			aMainCamera.transform.parent = EtherealInstance.transform;
+		}
+		// Disable ethereal mode
+		else
+        {
+			//reset to original body
+			aMainCamera.transform.parent = this.transform;
+			aMainCamera.transform.rotation = this.transform.rotation;
+			aMainCamera.transform.position = this.transform.position;
+
+			//destroy the instance
+			Destroy(EtherealInstance);
+		}
+
+		// Reset timer
+		etherealTimer = DURATION;
 	}
 }
