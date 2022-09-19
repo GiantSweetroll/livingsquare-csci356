@@ -450,8 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721115233b51d7f42837f9b6109a4723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SENS_HOR: 3
-  SENS_VER: 2
   SPEED: 5
   DURATION: 6
   aMainCamera: {fileID: 1294749034}
@@ -760,6 +758,7 @@ MonoBehaviour:
   holdArea: {fileID: 2088009118}
   pickupRange: 10
   pickupForce: 150
+  throwForce: 400
 --- !u!114 &1294749039
 MonoBehaviour:
   m_ObjectHideFlags: 0
