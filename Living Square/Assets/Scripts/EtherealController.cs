@@ -26,7 +26,6 @@ public class EtherealController : MonoBehaviour{
 	void Start(){
 		//get the components needed
 		thisRBody = GetComponent<Rigidbody>(); 
-		cameraTf = GameObject.Find("Camera").GetComponent<Transform>();
 	}
 
 
