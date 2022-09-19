@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * TODO:
+ * 1. Throw held object
+ * 2. Drop object when switching between physical/ethereal form?
+ * 3. Picked up object in ethereal form can pass through walls too?
+ * 4. Can only pick up certain objects (NO WALLS ALLOWED WTF)
+*/
 public class PickUpController : MonoBehaviour
 {
 /*==============================================================================
