@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour{
 									VARIABLES
 	==============================================================================*/
 	//player settings variables
-	public float SENS_HOR = 3f;
-	public float SENS_VER = 2f;
 	public float SPEED = 5f;
 	public float DURATION = 6f;
 
@@ -30,8 +28,6 @@ public class PlayerController : MonoBehaviour{
 	private float mvX;
 	private float mvZ;
 	private Vector3 mvDir;
-	private float mouseX;
-	private float mouseY;
 	private bool isInstantiated = false;
     private float etherealTimer;
 
@@ -43,9 +39,6 @@ public class PlayerController : MonoBehaviour{
 	public GameObject EtherealPrefab;
 	private GameObject EtherealInstance;
 
-	//Game Objects Components
-	private Transform cameraTf;
-
 
 /*==============================================================================
 									START
@@ -54,7 +47,6 @@ public class PlayerController : MonoBehaviour{
     void Start(){
 		//get the components needed
     	thisRBody = GetComponent<Rigidbody>(); 
-		cameraTf = aMainCamera.GetComponent<Transform>();
 
     	// disable the mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -71,13 +63,6 @@ public class PlayerController : MonoBehaviour{
 		//get inputs
 		mvX = Input.GetAxis("Horizontal");
 		mvZ = Input.GetAxis("Vertical");
-		mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
-		mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER;
-
-		//rotate around y axis for body
-		transform.Rotate(0, mouseX, 0);
-		//rotate camera according to mouse
-		cameraTf.Rotate(-mouseY, 0, 0);
 
 		//switch to ethereal
 		if (Input.GetKeyDown(KeyCode.Z))

@@ -670,6 +670,7 @@ GameObject:
   - component: {fileID: 1294749037}
   - component: {fileID: 1294749036}
   - component: {fileID: 1294749035}
+  - component: {fileID: 1294749039}
   - component: {fileID: 1294749038}
   m_Layer: 0
   m_Name: Camera
@@ -759,6 +760,20 @@ MonoBehaviour:
   holdArea: {fileID: 2088009118}
   pickupRange: 10
   pickupForce: 150
+--- !u!114 &1294749039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294749034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fc166aff9e0dc47adc1ab41b07900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENS_HOR: 3
+  SENS_VER: 2
 --- !u!1 &1956941069
 GameObject:
   m_ObjectHideFlags: 0
