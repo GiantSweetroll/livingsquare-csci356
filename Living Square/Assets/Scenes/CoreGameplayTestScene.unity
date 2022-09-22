@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1085854249}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SENS_HOR: 3
   SENS_VER: 2
+  VERTICAL_ROTATE_LIMIT: 30
 --- !u!1 &1956941069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1150,7 @@ GameObject:
   - component: {fileID: 2088009118}
   m_Layer: 0
   m_Name: HoldArea
-  m_TagString: Untagged
+  m_TagString: InteractiveArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

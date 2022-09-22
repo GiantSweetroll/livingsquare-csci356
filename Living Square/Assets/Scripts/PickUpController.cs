@@ -38,8 +38,10 @@ public class PickUpController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
                 {
-                    // Pick up object from raycast
-                    PickupObject(hit.transform.gameObject);
+                    // Only pick up object if it has the tag Pickable
+                    if (hit.transform.gameObject.tag == "Pickable")
+                        // Pick up object from raycast
+                        PickupObject(hit.transform.gameObject);
                 }
             }
             else
@@ -90,6 +92,7 @@ public class PickUpController : MonoBehaviour
 
     void MoveObject()
     {
+        // FIXME: Looking down with an object held causes player to be propelled in opposite direction
         if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
         {
             Vector3 moveDirection = (holdArea.position - heldObj.transform.position);
