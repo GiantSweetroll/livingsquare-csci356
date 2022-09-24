@@ -21,22 +21,28 @@ public class PlayerController : MonoBehaviour{
 									VARIABLES
 	==============================================================================*/
 	//player settings variables
+	[Header("Settings")]
 	public float SPEED = 5f;
 	public float DURATION = 6f;
+	public float JUMP_FORCE = 5f;
+	public float GROUND_CHECK_RADIUS = 0.4f;	// Size of sphere to check for ground collision
 
 	//player internal variables
 	private float mvX;
 	private float mvZ;
 	private Vector3 mvDir;
-	private bool isInstantiated = false;
-    private float etherealTimer;
+	private bool isInstantiated = false, isGrounded;
+	private float etherealTimer;
 
 	//player Components
 	private Rigidbody thisRBody;
 
 	//Game Objects
+	[Header("Game Object References")]
 	public GameObject aMainCamera;
 	public GameObject EtherealPrefab;
+	public Transform groundCheck;
+	public LayerMask groundMask;
 	private GameObject EtherealInstance;
 
 
@@ -60,6 +66,9 @@ public class PlayerController : MonoBehaviour{
 	//should only be used to get input and non physics related code
     void Update(){
 
+		// Check if player is grounded
+		isGrounded = Physics.CheckSphere(groundCheck.position, GROUND_CHECK_RADIUS, groundMask);
+
 		//get inputs
 		mvX = Input.GetAxis("Horizontal");
 		mvZ = Input.GetAxis("Vertical");
@@ -69,6 +78,13 @@ public class PlayerController : MonoBehaviour{
 		{
 			SwitchEtherealMode(!isInstantiated);
 		}
+
+		// Player jump
+		if (Input.GetButtonDown("Jump") && isGrounded && !isInstantiated)
+        {
+			Vector3 direction = transform.up;
+			thisRBody.AddForce(direction * JUMP_FORCE, ForceMode.Impulse);
+        }
 
 		// If ethereal form object is instantiated
 		if (isInstantiated){
