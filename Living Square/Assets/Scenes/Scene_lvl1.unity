@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 262121490}
   m_Layer: 0
   m_Name: bridgeButton
-  m_TagString: Untagged
+  m_TagString: InteractiveArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,8 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7e53bf437beb846aedf4dda165cb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bridge: {fileID: 276566779}
-  bridgeOpen: 0
+  anInteractObj: {fileID: 276566779}
 --- !u!95 &262121489
 Animator:
   serializedVersion: 3
@@ -689,7 +688,7 @@ GameObject:
   - component: {fileID: 1753610314}
   - component: {fileID: 1753610318}
   - component: {fileID: 1753610319}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1092,6 +1091,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5238100227645663673, guid: a0476b5c0509d0741b884f573699c9d8,
+        type: 3}
+      propertyPath: VERTICAL_ROTATE_LIMIT
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 5238100229214356385, guid: a0476b5c0509d0741b884f573699c9d8,
         type: 3}
       propertyPath: m_Name
@@ -1266,7 +1270,7 @@ GameObject:
   - component: {fileID: 2138005567}
   - component: {fileID: 2138005566}
   - component: {fileID: 2138005565}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: waterFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
