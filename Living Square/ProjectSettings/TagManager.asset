@@ -7,6 +7,7 @@ TagManager:
   - Ethereal
   - InteractiveArea
   - Pickable
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - Player
   - Ground
-  - 
-  - 
+  - Passable
+  - Ethereal
   - 
   - 
   - 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4733529332030153729}
   - component: {fileID: 9153801036506251467}
   - component: {fileID: -6654370933418795894}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ethereal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8259894911819798767}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -110,7 +110,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &-6654370933418795894
 MonoBehaviour:
@@ -124,7 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f9252a45f67f04bb67d019f8a72eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SENS_HOR: 3
-  SENS_VER: 2
   SPEED: 5
-  aMainCamera: {fileID: 0}
