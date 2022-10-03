@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     // Settings variables
     public float SENS_HOR = 3f;
     public float SENS_VER = 2f;
-    public float VERTICAL_ROTATE_LIMIT = 85f;
+    public float VERTICAL_ROTATE_LIMIT = 45f;
 
     // internal variables
     private float mouseX = 0.0f;
