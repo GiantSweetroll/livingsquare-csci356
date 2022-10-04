@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SENS_HOR: 3
   SENS_VER: 2
-  VERTICAL_ROTATE_LIMIT: 85
+  VERTICAL_ROTATE_LIMIT: 80
 --- !u!114 &5238100227645663672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdArea: {fileID: 5238100228471413064}
+  heldObj: {fileID: 0}
   pickupRange: 10
   pickupForce: 150
   throwForce: 400
@@ -335,7 +336,6 @@ MonoBehaviour:
   SPEED: 5
   DURATION: 6
   JUMP_FORCE: 189
-  GROUND_CHECK_RADIUS: 0.4
   aMainCamera: {fileID: 5238100227645663676}
   EtherealPrefab: {fileID: 8259894911819798767, guid: a506976ee74f0fc4b8a7c848939c9fab,
     type: 3}
