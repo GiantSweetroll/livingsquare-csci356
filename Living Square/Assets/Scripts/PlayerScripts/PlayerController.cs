@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour{
 	public GameObject aMainCamera;
 	public GameObject EtherealPrefab;
 	private GameObject EtherealInstance;
+	private PickUpController pickupController;
 	private Transform groundCheck;
 	//layer 9 is ground
 	public LayerMask groundMask;
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour{
 		groundCheck = transform.Find("GroundCheck");
     	// disable the mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
+		// get reference to PickUpController script
+		pickupController = aMainCamera.GetComponent<PickUpController>();
     }
 
 
@@ -116,6 +119,10 @@ public class PlayerController : MonoBehaviour{
 	private void SwitchEtherealMode(bool isEthereal)
     {
 		isInstantiated = isEthereal;
+
+		// Drop any objects currently being picked up
+		if (pickupController.heldObj != null)
+			pickupController.DropObject();
 
 		// Enable ethereal mode
 		if (isEthereal)

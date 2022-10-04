@@ -6,7 +6,6 @@ using UnityEngine;
  * TODO:
  * - Drop object when switching between physical/ethereal form?
  * - Picked up object in ethereal form can pass through walls too?
- * - Can only pick up certain objects (NO WALLS ALLOWED WTF)
  * - Only throw selected object?
  * - Can only throw in physical body only?
 */
@@ -17,8 +16,9 @@ public class PickUpController : MonoBehaviour
 ==============================================================================*/
     [Header("Pickup Settings")]
     [SerializeField] Transform holdArea;
-    private GameObject heldObj;
+    [HideInInspector]public GameObject heldObj;
     private Rigidbody heldObjRb;
+    private int heldObjOriginalLayer;
 
     [Header("Physics Parameters")]
     [SerializeField] private float pickupRange = 5.0f;
@@ -78,13 +78,19 @@ public class PickUpController : MonoBehaviour
 
             heldObjRb.transform.parent = holdArea;
             heldObj = pickedObj;
+            // Move held object to layer 12 (PickedUpObject) to prevent physics collision with body
+            heldObjOriginalLayer = heldObj.layer;
+            heldObj.layer = 12;
         }
     }
-    void DropObject()
+    public void DropObject()
     {
         heldObjRb.useGravity = true;
         heldObjRb.drag = 1;
         heldObjRb.constraints = RigidbodyConstraints.None;
+
+        // Return held object to its original layer
+        heldObj.layer = heldObjOriginalLayer;
 
         heldObjRb.transform.parent = null;
         heldObj = null;
@@ -92,7 +98,6 @@ public class PickUpController : MonoBehaviour
 
     void MoveObject()
     {
-        // FIXME: Looking down with an object held causes player to be propelled in opposite direction
         if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
         {
             Vector3 moveDirection = (holdArea.position - heldObj.transform.position);
@@ -107,6 +112,9 @@ public class PickUpController : MonoBehaviour
 
         Vector3 throwDirection = transform.forward;
         heldObjRb.AddForce(throwDirection * throwForce);
+
+        // Return held object to its original layer
+        heldObj.layer = heldObjOriginalLayer;
 
         heldObjRb.transform.parent = null;
         heldObj = null;
