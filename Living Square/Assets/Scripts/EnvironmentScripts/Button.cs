@@ -20,7 +20,6 @@ public class Button : MonoBehaviour
 	private Ray ray;
 	private RaycastHit hit;
 
-
 /*==============================================================================
 									START
 ==============================================================================*/
@@ -40,7 +39,7 @@ public class Button : MonoBehaviour
     void Update()
     {
 		//get ray for where camera is pointing
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		if(Input.GetMouseButtonDown(0))
 		{
