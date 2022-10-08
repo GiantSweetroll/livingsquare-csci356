@@ -8,7 +8,7 @@ public class TitleMenuGUI : MonoBehaviour
 	//working area
 	private int halfWidthStart;
 	private int halfHeightStart;
-	private int workingAreaWidth = 320;
+	private int workingAreaWidth = 430;
 	private int workingAreaHeight = 400;
 
 	/*
@@ -78,7 +78,7 @@ public class TitleMenuGUI : MonoBehaviour
 		);
 
 		//Title label
-		GUI.Label(titleBox, "LIVING\nSQUARE", titleStyle);
+		GUI.Label(titleBox, "PROJECT\nETHEREAL", titleStyle);
 
 		if(GUI.Button(buttonBox1, "START", menuStyle)){
 			//lighting may not generate in editor debug mode when loading scene

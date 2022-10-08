@@ -533,6 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anInteractObj: {fileID: 276566779}
+  labelFont: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
 --- !u!1 &1753610313
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +955,21 @@ PrefabInstance:
         type: 3}
       propertyPath: VERTICAL_ROTATE_LIMIT
       value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238100227645663674, guid: a0476b5c0509d0741b884f573699c9d8,
+        type: 3}
+      propertyPath: m_FocalLength
+      value: 16.160034
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238100227645663674, guid: a0476b5c0509d0741b884f573699c9d8,
+        type: 3}
+      propertyPath: m_SensorSize.x
+      value: 24.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238100227645663674, guid: a0476b5c0509d0741b884f573699c9d8,
+        type: 3}
+      propertyPath: m_SensorSize.y
+      value: 18.66
       objectReference: {fileID: 0}
     - target: {fileID: 5238100229214356385, guid: a0476b5c0509d0741b884f573699c9d8,
         type: 3}

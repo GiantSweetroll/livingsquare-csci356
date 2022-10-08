@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * Camera must ALWAYS be a child of an object (Physical or Ethereal body)
@@ -17,11 +18,42 @@ public class CameraController : MonoBehaviour
     private float mouseX = 0.0f;
     private float mouseY = 0.0f;
 
+	//crosshair point area size
+	//crosshair is active or not can be turned off
+	private bool crosshairActive = true;
+	private int boxWidth = 6;
+	private int boxHeight = 6;
+	//must not be larger than box width or height
+	private int crosshairWidth = 2;
+	private Rect crosshairWorkingArea;
+	private Rect crosshairBox1;
+	private Rect crosshairBox2;
+	private GUIStyle crosshairStyle = new GUIStyle();
+
     // Start is called before the first frame update
     void Start()
     {
         // disable the mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
+
+		//crosshair in 8x8 box in center
+		crosshairWorkingArea = new Rect(
+			(int)((Screen.width - boxWidth) * 0.5),
+			(int)((Screen.height - boxHeight) * 0.5),
+			boxWidth, boxHeight
+		);
+		//start x=2,y=0 and width=4,height=8
+		crosshairBox1 = new Rect(
+			(int)((boxWidth - crosshairWidth) * 0.5), 0,
+			crosshairWidth, boxHeight
+		);
+		//start x=0,y=2 and width=8,height=4
+		crosshairBox2 = new Rect(
+			0, (int)((boxWidth - crosshairWidth) * 0.5),
+			boxWidth, crosshairWidth
+		);
+
+		crosshairStyle.normal.background = Texture2D.whiteTexture;
     }
 
     // Update is called once per frame
@@ -59,4 +91,18 @@ public class CameraController : MonoBehaviour
 
         transform.Rotate(incrementY, 0, 0);
     }
+
+	void OnGUI(){
+		if(crosshairActive){
+			GUI.BeginGroup(crosshairWorkingArea);
+			GUI.Box(crosshairBox1, "", crosshairStyle);
+			GUI.Box(crosshairBox2, "", crosshairStyle);
+			GUI.EndGroup();
+		}
+	}
+
+	//can be changed when accessing menu or upon death
+	public void setCrosshairActive(bool state){
+		crosshairActive = state;
+	}
 }
