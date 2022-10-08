@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     // internal variables
     private float mouseX = 0.0f;
     private float mouseY = 0.0f;
+	private bool mouseActive = true;
 
 	//crosshair point area size
 	//crosshair is active or not can be turned off
@@ -60,8 +61,10 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         // get inputs
-        mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
-        mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER * -1;
+		if(mouseActive){
+        	mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
+        	mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER * -1;
+		}
 
         //rotate around y axis for body
         transform.parent.Rotate(0, mouseX, 0);
@@ -70,8 +73,10 @@ public class CameraController : MonoBehaviour
         ClampCameraRotation(mouseY);
 
         // enable the mouse cursor if Esc pressed
-        if (Input.GetKeyDown("escape")) 
+        if (Input.GetKeyDown("escape")){ 
             Cursor.lockState = CursorLockMode.None;
+			mouseActive = false;
+		}
     }
     // Method to restrict vertical camera movement
     void ClampCameraRotation(float incrementY)
