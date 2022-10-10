@@ -39,6 +39,8 @@ public class InvestigateState : EnemyAiState
             agent.anim.SetBool("running", false);
             agent.chasingPlayer = false;
         }
+
+        agent.agentAudio.Stop();
     }
 
     public StateId GetId()
@@ -52,7 +54,15 @@ public class InvestigateState : EnemyAiState
         time += Time.deltaTime;
         if(time > timeToWait && !agent.chasingPlayer) // has agent wait before moving towards player position
         {
+
+            // only plays audio if it currently isnt
+            if (!agent.agentAudio.audioSource.isPlaying)
+            {
+                agent.agentAudio.Walk();
+            }
+
             agent.anim.SetBool("walking", true);
+            
             agent.navAgent.SetDestination(playerLastPosition);
 
 
@@ -73,6 +83,12 @@ public class InvestigateState : EnemyAiState
         else if (agent.chasingPlayer)
         {
             agent.navAgent.SetDestination(playerLastPosition); // goes to last known position
+
+            // only plays audio if it currently isnt
+            if (!agent.agentAudio.audioSource.isPlaying)
+            {
+                agent.agentAudio.Run();
+            }
 
             if (!agent.navAgent.pathPending) // checks if a path is pending
             {

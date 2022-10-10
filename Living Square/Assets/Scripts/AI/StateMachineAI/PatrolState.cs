@@ -12,8 +12,8 @@ public class PatrolState : EnemyAiState
 
     public void Enter(AiAgent agent)
     {
-        //agent.anim.SetTrigger("walking"); // sets walking animation
         agent.anim.SetBool("walking", true);
+        agent.agentAudio.Walk();
         wayPointParentTransf = agent.config.waypointParent.transform; // gets waypoint parent from config
 
         // instantiates tranform array with number of children of waypoint parent
@@ -32,6 +32,7 @@ public class PatrolState : EnemyAiState
     public void Exit(AiAgent agent)
     {
         agent.anim.SetBool("walking", false);
+        agent.agentAudio.Stop();
     }
 
     public StateId GetId()

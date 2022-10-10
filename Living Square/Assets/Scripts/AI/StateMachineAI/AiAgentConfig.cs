@@ -11,5 +11,7 @@ public class AiAgentConfig : ScriptableObject
     public bool isStaticEnemy; // set to true if enemy is not a patrolling enemy
     public Vector3 spawnPos; // to store spawn pos of ai agent
     public Quaternion spawnRot; // to store rotation of spawn
+    public AudioClip walkSound; // stores the walk audio clip
+    public AudioClip runSound; // stores the run audio clip
     
 }

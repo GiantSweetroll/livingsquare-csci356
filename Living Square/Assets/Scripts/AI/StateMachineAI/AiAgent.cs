@@ -16,6 +16,7 @@ public class AiAgent : MonoBehaviour
     public Animator anim; // variable to hold the animator
     public StateId currentState;
     public FieldOfView fov;
+    public EnemyAudio agentAudio;
 
     // variables for AI to access player information
     public bool playerSeen = false;
@@ -30,6 +31,7 @@ public class AiAgent : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         fov = GetComponent<FieldOfView>();
+        agentAudio = GetComponent<EnemyAudio>(); 
 
         // registers different states
         statemachine.RegisterState(new PatrolState());

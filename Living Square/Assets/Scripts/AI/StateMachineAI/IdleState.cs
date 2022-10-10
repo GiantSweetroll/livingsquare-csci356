@@ -12,6 +12,7 @@ public class IdleState : EnemyAiState
     {
         time = 0;
         idleTime = agent.config.idleTime; // idle time can be changed in config file
+        agent.agentAudio.Stop();
 
         // sets destination to current position of nav agent so it doesn't move
         agent.navAgent.SetDestination(agent.navAgent.transform.position);

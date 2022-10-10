@@ -9,6 +9,7 @@ public class GoToStartingPosState : EnemyAiState
     public void Enter(AiAgent agent)
     {
         agent.anim.SetBool("walking", true);
+        agent.agentAudio.Walk();
         agent.navAgent.SetDestination(agent.config.spawnPos); // has agent go back to it's start/spawn destination
 
     }
@@ -16,6 +17,8 @@ public class GoToStartingPosState : EnemyAiState
     public void Exit(AiAgent agent)
     {
         agent.anim.SetBool("walking", false);
+
+        agent.agentAudio.Stop();
     }
 
     public StateId GetId()
@@ -29,7 +32,8 @@ public class GoToStartingPosState : EnemyAiState
         {
             // sets navagent to it's own position to have it stop moving then rotates the enemy to face it's spawning position
             agent.navAgent.SetDestination(agent.navAgent.transform.position);
-            agent.anim.SetBool("walking", false); 
+            agent.anim.SetBool("walking", false);
+            agent.agentAudio.Stop();
             agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, agent.config.spawnRot, Time.deltaTime * 5);
         }
     }

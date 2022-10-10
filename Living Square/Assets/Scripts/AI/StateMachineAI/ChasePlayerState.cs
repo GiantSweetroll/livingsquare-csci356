@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChasePlayerState : EnemyAiState
 {
@@ -8,6 +9,8 @@ public class ChasePlayerState : EnemyAiState
     {
         // if Ai enters this state then we have it start running and set chasing player to true
         agent.anim.SetBool("running", true);
+        //if(!agent.agentAudio.audioSource.isPlaying) agent.agentAudio.Run();
+
         agent.chasingPlayer = true;
 
         // because ai is now aware of player we increase the fov angle of the Ai and the spotted/detection radius
@@ -27,7 +30,8 @@ public class ChasePlayerState : EnemyAiState
         agent.fov.radius = 30.0f;
         agent.fov.viewAngle = 70.0f;
         agent.fov.spottedDistance = 7.0f;
-        
+        agent.agentAudio.Stop();
+
     }
 
     public StateId GetId()
