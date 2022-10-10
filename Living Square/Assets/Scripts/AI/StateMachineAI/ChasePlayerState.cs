@@ -46,7 +46,10 @@ public class ChasePlayerState : EnemyAiState
         // if so then the ai will continue to update its destination to the players location
         if (agent.playerSeen && agent.chasingPlayer)
         {
-            agent.navAgent.SetDestination(agent.playerLocation.position);
+
+           agent.navAgent.SetDestination(agent.playerLocation.position);
+            
+            
         }
         // if the Ai can no longer see the player but is still "chasing" the player then it will go to investigate state
         // to check players last known location

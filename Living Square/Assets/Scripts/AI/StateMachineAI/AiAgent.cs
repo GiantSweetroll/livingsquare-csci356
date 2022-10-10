@@ -9,19 +9,27 @@ public class AiAgent : MonoBehaviour
 {
 
     // variables to manage state machine, nav mesh and animator
+    [HideInInspector]
     public StateMachine statemachine; // variable to hold statemachine for AiAgent
     public StateId entryState = StateId.Idle; // sets entry state for statemachine use
+    [HideInInspector]
     public NavMeshAgent navAgent; // variable to hold navAgent
     public AiAgentConfig config; // variable which holds config
+    [HideInInspector]
     public Animator anim; // variable to hold the animator
     public StateId currentState;
-    public FieldOfView fov;
-    public EnemyAudio agentAudio;
+    [HideInInspector]
+    public FieldOfView fov; // variable to hold fov script
+    [HideInInspector]
+    public EnemyAudio agentAudio; // variable to hold EnemyAudio script
+    [HideInInspector]
+    public PathChecker pathChecker; // variable to hold PathChecker script
 
     // variables for AI to access player information
     public bool playerSeen = false;
     public bool chasingPlayer = false;
     public Transform playerLocation;
+    public bool hasPath = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +39,8 @@ public class AiAgent : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         fov = GetComponent<FieldOfView>();
-        agentAudio = GetComponent<EnemyAudio>(); 
+        agentAudio = GetComponent<EnemyAudio>();
+        pathChecker = new PathChecker(this);
 
         // registers different states
         statemachine.RegisterState(new PatrolState());
@@ -62,7 +71,7 @@ public class AiAgent : MonoBehaviour
     // and because the statemachine is no a monoscript, we call the update function within the AiScript for the statemachine
     void Update()
     {
-        statemachine.Update(); // used to call the update method of the current state
+        statemachine.Update(); // used to call the update method of the current state       
         currentState = statemachine.currentState; // for debugging purposes (to keep track of the current state when testing)
     }
 }

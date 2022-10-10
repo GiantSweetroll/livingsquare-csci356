@@ -55,20 +55,28 @@ public class FieldOfView : MonoBehaviour
                 // casts a ray from the enemy to the target, if it hits anything in the object mask then playerSeen will be set false
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, objectMask))
                 {
-                    // checks to see if target/player is greater than the spottedDistance
-                    // if greater than spotted distance than AI will investigate, this also checks if playerseen is equal to false
-                    // if it's less than the spotted distance then AI will chase player as player is close
-                    if(distanceToTarget > spottedDistance && !agent.playerSeen && !agent.chasingPlayer)
+                    // checks if the nav agent can get to the player by using the path checker script
+                    // if no path can be made then agent will go back to idle state
+                    if (agent.pathChecker.checkPath(agent.playerLocation.position))
                     {
-                        agent.statemachine.updateCurrentState(StateId.Investigate);
-                       
+                        // checks to see if target/player is greater than the spottedDistance
+                        // if greater than spotted distance than AI will investigate, this also checks if playerseen is equal to false
+                        // if it's less than the spotted distance then AI will chase player as player is close
+                        if (distanceToTarget > spottedDistance && !agent.playerSeen && !agent.chasingPlayer)
+                        {
+                            agent.statemachine.updateCurrentState(StateId.Investigate);
+
+                        }
+                        // player is close:
+                        else
+                        {
+                            agent.playerSeen = true;
+                            agent.statemachine.updateCurrentState(StateId.ChasePlayer);
+                        }
+
                     }
-                    // player is close:
-                    else
-                    {
-                        agent.playerSeen = true;
-                        agent.statemachine.updateCurrentState(StateId.ChasePlayer);
-                    }
+                    else agent.playerSeen = false;
+                    
                     
                 }
                 else agent.playerSeen = false;
