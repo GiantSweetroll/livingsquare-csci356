@@ -12,7 +12,7 @@ public class Button : MonoBehaviour
 
 	//objects
 	public GameObject anInteractObj;
-	private Animator anInteractObjAnimator;
+	private Bridge aBridge;
 	private Animator ButtonAnimator;
 	private AudioSource audiosource;
 
@@ -36,8 +36,8 @@ public class Button : MonoBehaviour
 ==============================================================================*/
     void Start()
     {
+		aBridge = anInteractObj.GetComponent<Bridge>();
 		audiosource = GetComponent<AudioSource>();
-		anInteractObjAnimator = anInteractObj.GetComponent<Animator>();
 		ButtonAnimator = GetComponent<Animator>();
 
 		//interact label area under crosshair
@@ -82,11 +82,11 @@ public class Button : MonoBehaviour
 				{
 					//open action object
 					isTriggered = true;
-					Invoke(nameof(open), 0f);
+					aBridge.OnButtonPress(true);
 				} else {
 					//close action object
 					isTriggered = false;
-					Invoke(nameof(close), 0f);
+					aBridge.OnButtonPress(false);
 				}
 			}
 		}
@@ -113,21 +113,5 @@ public class Button : MonoBehaviour
 	void idle()
 	{
 		ButtonAnimator.SetTrigger("Idle");
-	}
-	
-	void open()
-	{
-		anInteractObjAnimator.SetTrigger("Open");
-	}
-	
-	void close()
-	{
-		anInteractObjAnimator.SetTrigger("Close");
-		Invoke(nameof(reset), 2f);
-	}
-	
-	void reset()
-	{
-		anInteractObjAnimator.SetTrigger("Idle");
 	}
 }
