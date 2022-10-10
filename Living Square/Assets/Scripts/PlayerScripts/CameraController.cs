@@ -64,14 +64,13 @@ public class CameraController : MonoBehaviour
 		if(mouseActive){
         	mouseX = Input.GetAxisRaw("Mouse X") * SENS_HOR;
         	mouseY = Input.GetAxisRaw("Mouse Y") * SENS_VER * -1;
+
+        	//rotate around y axis for body
+        	transform.parent.Rotate(0, mouseX, 0);
+        	//rotate camera according to mouse
+       		// transform.Rotate(mouseY, 0, 0);
+  	    	ClampCameraRotation(mouseY);
 		}
-
-        //rotate around y axis for body
-        transform.parent.Rotate(0, mouseX, 0);
-        //rotate camera according to mouse
-        // transform.Rotate(mouseY, 0, 0);
-        ClampCameraRotation(mouseY);
-
         // enable the mouse cursor if Esc pressed
         if (Input.GetKeyDown("escape")){ 
             Cursor.lockState = CursorLockMode.None;

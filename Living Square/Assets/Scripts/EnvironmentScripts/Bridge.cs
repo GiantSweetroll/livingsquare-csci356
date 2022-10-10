@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-	Animator BridgeAnimator;
-	bool bridgeOpen;
+	private Animator BridgeAnimator;
 	
-    // Start is called before the first frame update
-    void Start()
-    {
-        bridgeOpen = false;
+    void Start(){
 		BridgeAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O) )
-		{
-			bridgeOpen=true;
-			BridgeAnimator.SetTrigger("Open");
+	public void OnButtonPress(bool state){
+		if(state){
+			open();
 		}
-    }
+		else{
+			close();
+		}
+	}
+
+	void open()
+	{
+		BridgeAnimator.SetTrigger("Open");
+	}
+	
+	void close()
+	{
+		BridgeAnimator.SetTrigger("Close");
+		Invoke(nameof(reset), 2f);
+	}
 	
 	void reset()
 	{
-		if(bridgeOpen==true){
-				bridgeOpen=false;
-				BridgeAnimator.SetTrigger("Close");
-		}
+		BridgeAnimator.SetTrigger("Idle");
 	}
+
 }
