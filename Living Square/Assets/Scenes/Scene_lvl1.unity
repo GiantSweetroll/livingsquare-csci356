@@ -892,7 +892,7 @@ Transform:
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1807283048
 GameObject:
@@ -1267,6 +1267,11 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 6095331065474498472, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
+        type: 3}
+      propertyPath: radius
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7896543759222496366, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
         type: 3}
       propertyPath: m_Name
@@ -1280,7 +1285,7 @@ PrefabInstance:
     - target: {fileID: 7896543759222915086, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5656977
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7896543759222915086, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
         type: 3}
@@ -1290,7 +1295,7 @@ PrefabInstance:
     - target: {fileID: 7896543759222915086, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.550962
+      value: 17.48
       objectReference: {fileID: 0}
     - target: {fileID: 7896543759222915086, guid: 9c093f51e7e4a92479cb6049cacbb3ba,
         type: 3}

@@ -42,22 +42,4 @@ public class PathChecker
 
     }
 
-    public void checkPath()
-    {
-        NavMeshPath path = new NavMeshPath();
-
-        navAgent.CalculatePath(navAgent.destination, path);
-
-        if (path.status != NavMeshPathStatus.PathComplete)
-        {
-            agent.hasPath = false;
-        }
-
-        else
-        {
-            agent.hasPath = true;
-        }
-
-
-    }
 }
