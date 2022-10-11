@@ -71,10 +71,15 @@ public class CameraController : MonoBehaviour
        		// transform.Rotate(mouseY, 0, 0);
   	    	ClampCameraRotation(mouseY);
 		}
+//using key Q instead of escape since the unity editor also uses that key
+//for escaping the editor
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Q)){ 
+#else
         // enable the mouse cursor if Esc pressed
-        if (Input.GetKeyDown("escape")){ 
-            Cursor.lockState = CursorLockMode.None;
-			mouseActive = false;
+        if (Input.GetKeyDown(KeyCode.Escape)){ 
+#endif
+			mouseActive = !mouseActive;
 		}
     }
     // Method to restrict vertical camera movement

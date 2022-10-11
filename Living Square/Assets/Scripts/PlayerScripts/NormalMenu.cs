@@ -77,9 +77,24 @@ public class NormalMenu : MonoBehaviour
     }
 
 	void Update(){
-        if(Input.GetKeyDown("escape")){
-			menuActive = true;	
-            Cursor.lockState = CursorLockMode.None;
+		//using key Q instead of escape since the unity editor also uses that key
+		//for escaping the editor
+		#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Q)){ 
+		#else
+        // enable the mouse cursor if Esc pressed
+        if (Input.GetKeyDown(KeyCode.Escape)){ 
+		#endif
+			if(!menuActive){
+				if(Time.timeScale == 1.0f){Time.timeScale = 0.0f;}
+            	Cursor.lockState = CursorLockMode.None;
+				menuActive = true;
+			}
+			else{
+				if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
+            	Cursor.lockState = CursorLockMode.Locked;
+				menuActive = false;
+			}
 		}
 	}
 
@@ -93,6 +108,9 @@ public class NormalMenu : MonoBehaviour
 			GUI.Label(titleBox, message, titleStyle);
 
 			if(GUI.Button(buttonBox1, "RESTART", menuStyle)){
+				if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
+            	Cursor.lockState = CursorLockMode.Locked;
+				menuActive = false;
 				//lighting may not generate in editor debug mode when loading scene
 				//to fix (important go to "Scene_lvl1" first):  
 				//Windows > Rendering > lighting settings > tick Auto Generate
