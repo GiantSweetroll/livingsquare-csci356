@@ -9,7 +9,7 @@ public class PressurePlate : MonoBehaviour
 ==============================================================================*/
     // Public variables
     public float speed = 0.5f;
-    public bool isFullDown = false, isFullUp = true;
+    [HideInInspector] public bool isFullDown = false, isFullUp = true;
 
     // Flags
     private bool isDownDirection = true, isTransitioning = false;
