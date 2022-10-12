@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    public float speed = 5f;
+/*==============================================================================
+                                    VARIABLES
+==============================================================================*/
+    // Public variables
+    public float speed = 0.5f;
+    public bool isFullDown = false, isFullUp = true;
 
-    private bool isActivated = false, isTransitioning = false;
+    // Flags
+    private bool isDownDirection = true, isTransitioning = false;
+    
+    // internal variables
     private Vector3 originalPos;
     private float targetPosActivated;
 
+/*==============================================================================
+                                    START
+==============================================================================*/
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +28,19 @@ public class PressurePlate : MonoBehaviour
         targetPosActivated = originalPos.y - transform.localScale.y / 2;
     }
 
+
+/*==============================================================================
+                                    UPDATE
+==============================================================================*/
     // Update is called once per frame
     void Update()
     {
-        /*
         if (isTransitioning)
         {
             Vector3 pos = transform.position;
-            if (!isActivated)
+
+            if (isDownDirection)
             {
-                // go down until half its Y scale
                 if (transform.position.y > targetPosActivated)
                 {
                     pos.y -= speed * Time.deltaTime;
@@ -34,7 +48,7 @@ public class PressurePlate : MonoBehaviour
                 }
                 else
                 {
-                    isActivated = true;
+                    isFullDown = true;
                     isTransitioning = false;
                 }
             }
@@ -48,30 +62,42 @@ public class PressurePlate : MonoBehaviour
                 }
                 else
                 {
-                    isActivated = false;
+                    // Clamp Y pos to not be higher than original
+                    if (pos.y > originalPos.y)
+                    {
+                        pos.y = originalPos.y;
+                        transform.position = pos;
+                    }
+
+                    isFullUp = true;
                     isTransitioning = false;
                 }
             }
         }
-        */
     }
 
+/*==============================================================================
+                                ON_TRIGGER_ENTER
+==============================================================================*/
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Pickable")
         {
- //           isTransitioning = true;
-            // TODO: Do something
-            Debug.Log("Pressure Plate activated");
+            isTransitioning = true;
+            isDownDirection = true;
+            isFullUp = false;
         }
     }
+/*==============================================================================
+                                ON_TRIGGER_EXIT
+==============================================================================*/
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Pickable")
         {
- //           isTransitioning = true;
-            // TODO: Do something
-            Debug.Log("Pressure Plate deactivated");
+            isTransitioning = true;
+            isDownDirection = false;
+            isFullDown = false;
         }
     }
 }
