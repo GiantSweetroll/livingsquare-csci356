@@ -16,6 +16,7 @@ public class Button : MonoBehaviour
 
 	//Events
 	public EventManager OnButtonTriggered;
+	//id for what is linked to this button
 	public int ButtonID; 
 
 	//internal variables
@@ -55,6 +56,7 @@ public class Button : MonoBehaviour
 		labelStyle.alignment = TextAnchor.UpperCenter;
     }
 	
+	//trigger activebutton for only the button where the player is
 	void OnTriggerEnter(){activeButton = true;}
 	void OnTriggerExit(){activeButton = false;}
 
@@ -70,7 +72,6 @@ public class Button : MonoBehaviour
 				labelActive = true;
 
 				if(Input.GetMouseButtonDown(0)){
-					Debug.Log("" + hit.collider.gameObject.name);
 					//animate and sound audio
 					ButtonAnimator.SetTrigger("Down");
 					audiosource.Play(0);
@@ -83,11 +84,11 @@ public class Button : MonoBehaviour
 					{
 						//open action object
 						isTriggered = true;
-						OnButtonTriggered.RaiseEvents(this, true);
+						OnButtonTriggered.RaiseEvent(this, true);
 					} else {
 						//close action object
 						isTriggered = false;
-						OnButtonTriggered.RaiseEvents(this, false);
+						OnButtonTriggered.RaiseEvent(this, false);
 					}
 				}
 			}
