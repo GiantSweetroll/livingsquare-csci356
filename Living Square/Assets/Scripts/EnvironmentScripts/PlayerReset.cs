@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerReset : MonoBehaviour
 {
@@ -23,12 +24,12 @@ public class PlayerReset : MonoBehaviour
 		if(col.gameObject.tag == "Player")
 		{
 			//resets after 1.5 seconds
-			Invoke(nameof(reset), 1.5f);
+			Invoke(nameof(reset), 0f);
 		}
 	}
 	
 	void reset()
 	{
-		playerTF.position = resetPos;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-	private Animator BridgeAnimator;
+	private Animator Animator;
 	
     void Start(){
-		BridgeAnimator = GetComponent<Animator>();
+		Animator = this.GetComponent<Animator>();
     }
 
 	public void OnButtonPress(bool state){
@@ -21,18 +21,18 @@ public class Bridge : MonoBehaviour
 
 	void open()
 	{
-		BridgeAnimator.SetTrigger("Open");
+		Animator.SetTrigger("Open");
 	}
 	
 	void close()
 	{
-		BridgeAnimator.SetTrigger("Close");
+		Animator.SetTrigger("Close");
 		Invoke(nameof(reset), 2f);
 	}
 	
 	void reset()
 	{
-		BridgeAnimator.SetTrigger("Idle");
+		Animator.SetTrigger("Idle");
 	}
 
 }
