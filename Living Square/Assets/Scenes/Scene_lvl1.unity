@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 276566781}
   - component: {fileID: 276566780}
   - component: {fileID: 276566782}
+  - component: {fileID: 276566783}
   m_Layer: 0
   m_Name: BridgeParent
   m_TagString: Untagged
@@ -278,6 +279,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5866ef35bec9e1469d31fe909cfc099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BridgeID: 1
+--- !u!114 &276566783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276566779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c929e230adc94064aa3f8dfec3d74185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  anEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276566782}
+        m_MethodName: OnButtonPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!1 &900613005
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,9 +514,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314871747}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c929e230adc94064aa3f8dfec3d74185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  anEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1314871756}
+        m_MethodName: OnButtonPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &1314871755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314871747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7e53bf437beb846aedf4dda165cb5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnButtonTriggered: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  ButtonID: 2
+  labelFont: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+--- !u!114 &1314871756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314871747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb607b2bf1e9c4848b7254bb0e7982ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextSceneID: 2
+  sceneName: Scene_lv2
 --- !u!1001 &1587540455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -575,7 +648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7e53bf437beb846aedf4dda165cb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anInteractObj: {fileID: 276566779}
+  OnButtonTriggered: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  ButtonID: 1
   labelFont: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
 --- !u!1 &1753610313
 GameObject:
@@ -892,7 +966,7 @@ Transform:
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1807283048
 GameObject:

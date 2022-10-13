@@ -5,17 +5,24 @@ using UnityEngine;
 public class Bridge : MonoBehaviour
 {
 	private Animator BridgeAnimator;
+
+	public int BridgeID;
 	
     void Start(){
 		BridgeAnimator = GetComponent<Animator>();
     }
 
-	public void OnButtonPress(bool state){
-		if(state){
-			open();
-		}
-		else{
-			close();
+	public void OnButtonPress(Component invoker, object arg){
+		if(invoker is Button && arg is bool){
+			bool state = (bool)arg;
+			if(((Button)invoker).ButtonID == BridgeID){
+				if(state){
+					open();
+				}
+				else{
+					close();
+				}
+			}
 		}
 	}
 

@@ -11,15 +11,18 @@ public class Button : MonoBehaviour
 	private bool isTriggered = false;
 
 	//objects
-	public GameObject anInteractObj;
-	private Bridge aBridge;
 	private Animator ButtonAnimator;
 	private AudioSource audiosource;
+
+	//Events
+	public EventManager OnButtonTriggered;
+	public int ButtonID; 
 
 	//internal variables
 	private Ray ray;
 	private RaycastHit hit;
 	private bool hasHit = false;
+	private bool activeButton = false;
 
 	//text for interact
 	private bool labelActive = false;
@@ -36,7 +39,6 @@ public class Button : MonoBehaviour
 ==============================================================================*/
     void Start()
     {
-		aBridge = anInteractObj.GetComponent<Bridge>();
 		audiosource = GetComponent<AudioSource>();
 		ButtonAnimator = GetComponent<Animator>();
 
@@ -53,44 +55,44 @@ public class Button : MonoBehaviour
 		labelStyle.alignment = TextAnchor.UpperCenter;
     }
 	
+	void OnTriggerEnter(){activeButton = true;}
+	void OnTriggerExit(){activeButton = false;}
 
-/*==============================================================================
-									UPDATE
-==============================================================================*/
-    // Update is called once per frame
-	//should only be used to get input and non physics related code
     void Update()
     {
-		//get ray for where camera is pointing
-		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		hasHit = Physics.Raycast(ray,out hit);
+		if(activeButton){
+			//get ray for where camera is pointing
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			hasHit = Physics.Raycast(ray,out hit, 3.0f);
 
-		//check if hit an interactive area ie. button
-		if(hasHit && hit.collider.gameObject.tag == "InteractiveArea"){
-			labelActive = true;
+			//check if hit an interactive area ie. button
+			if(hasHit && hit.collider.gameObject.tag == "InteractiveArea"){
+				labelActive = true;
 
-			if(Input.GetMouseButtonDown(0)){
-				//animate and sound audio
-				ButtonAnimator.SetTrigger("Down");
-				audiosource.Play(0);
+				if(Input.GetMouseButtonDown(0)){
+					Debug.Log("" + hit.collider.gameObject.name);
+					//animate and sound audio
+					ButtonAnimator.SetTrigger("Down");
+					audiosource.Play(0);
 
-				//trigger button action (function "up") after 0.5 seconds
-				Invoke(nameof(up), 0.5f);
+					//trigger button action (function "up") after 0.5 seconds
+					Invoke(nameof(up), 0.5f);
 
-				//toggle button
-				if(isTriggered == false)
-				{
-					//open action object
-					isTriggered = true;
-					aBridge.OnButtonPress(true);
-				} else {
-					//close action object
-					isTriggered = false;
-					aBridge.OnButtonPress(false);
+					//toggle button
+					if(isTriggered == false)
+					{
+						//open action object
+						isTriggered = true;
+						OnButtonTriggered.RaiseEvents(this, true);
+					} else {
+						//close action object
+						isTriggered = false;
+						OnButtonTriggered.RaiseEvents(this, false);
+					}
 				}
 			}
+			else if(labelActive){labelActive = false;}
 		}
-		else if(labelActive){labelActive = false;}
     }
 	
 	void OnGUI(){

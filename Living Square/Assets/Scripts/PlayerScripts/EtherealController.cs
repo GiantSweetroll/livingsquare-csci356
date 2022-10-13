@@ -22,7 +22,7 @@ public class EtherealController : MonoBehaviour{
 
 	//player Components
 	private Rigidbody thisRBody;
-	private CapsuleCollider collider;
+	private new CapsuleCollider collider;
 
 /*==============================================================================
 									START
