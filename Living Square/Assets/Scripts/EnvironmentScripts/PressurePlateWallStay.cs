@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlateWall : MonoBehaviour
+public class PressurePlateWallStay : MonoBehaviour
 {
     public GameObject anInteractObj;
     private Animator anInteractObjAnimator;
