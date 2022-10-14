@@ -22,7 +22,7 @@ public class EtherealController : MonoBehaviour{
 
 	//player Components
 	private Rigidbody thisRBody;
-
+	private new CapsuleCollider collider;
 
 /*==============================================================================
 									START
@@ -37,6 +37,8 @@ public class EtherealController : MonoBehaviour{
 		Physics.IgnoreLayerCollision(11, 8);
 		//ignore collision Ethereal layer 11 with objects in passable layer 10
 		Physics.IgnoreLayerCollision(11, 10);
+		//get player's collider object
+		collider = GetComponent<CapsuleCollider>();
 	}
 
 
@@ -73,4 +75,14 @@ public class EtherealController : MonoBehaviour{
 			thisRBody.MovePosition(mvPos);
 		}
 	}
+
+/*==============================================================================
+                                ON_COLLISION_ENTER
+==============================================================================*/
+    private void OnCollisionEnter(Collision collision)
+    {
+		// Ignore collision with any pickable objects
+        if (collision.gameObject.tag == "Pickable")
+            Physics.IgnoreCollision(collision.collider, collider);
+    }
 }
