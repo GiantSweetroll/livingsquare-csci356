@@ -6,7 +6,7 @@ public class Bridge : MonoBehaviour
 {
 	private Animator Animator;
 
-	public BridgeID
+	public int BridgeID;
 	
     void Start(){
 		Animator = this.GetComponent<Animator>();
