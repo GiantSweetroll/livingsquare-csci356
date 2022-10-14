@@ -11,6 +11,9 @@ public class PressurePlate : MonoBehaviour
     public float speed = 0.5f;
     [HideInInspector] public bool isFullDown = false, isFullUp = true;
 
+    //Events
+    public EventManager OnTriggered, OnRelease;
+
     // Flags
     private bool isDownDirection = true, isTransitioning = false;
     
@@ -50,6 +53,10 @@ public class PressurePlate : MonoBehaviour
                 {
                     isFullDown = true;
                     isTransitioning = false;
+
+                    // Perform action when pressure plate is activated
+                    if (OnTriggered != null)
+                        OnTriggered.RaiseEvent(this, true);
                 }
             }
             else
@@ -71,6 +78,10 @@ public class PressurePlate : MonoBehaviour
 
                     isFullUp = true;
                     isTransitioning = false;
+
+                    // Perform action when pressure plate is activated
+                    if (OnRelease != null)
+                        OnRelease.RaiseEvent(this, true);
                 }
             }
         }
