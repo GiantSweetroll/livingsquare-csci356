@@ -28,7 +28,7 @@ public class PressurePlateWallStay : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.tag == "Pickable")
         {
