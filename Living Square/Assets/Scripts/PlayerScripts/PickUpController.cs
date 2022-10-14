@@ -12,6 +12,25 @@ using UnityEngine;
 public class PickUpController : MonoBehaviour
 {
 /*==============================================================================
+									START
+==============================================================================*/
+    void Start()
+    {
+		//interact label area under crosshair
+		labelWorkingArea = new Rect(
+			(int)((Screen.width - boxWidth) * 0.5),
+			(int)((Screen.height - boxHeight) * 0.5) + heightOffset,
+			boxWidth, boxHeight
+		);
+		//label style
+		labelStyle.font = labelFont;
+		labelStyle.fontSize = 14;
+		labelStyle.normal.textColor = labelColour;
+		labelStyle.alignment = TextAnchor.UpperCenter;
+    }
+	
+	
+/*==============================================================================
 								VARIABLES
 ==============================================================================*/
     [Header("Pickup Settings")]
@@ -21,9 +40,26 @@ public class PickUpController : MonoBehaviour
     private int heldObjOriginalLayer;
 
     [Header("Physics Parameters")]
-    [SerializeField] private float pickupRange = 5.0f;
+    [SerializeField] private float pickupRange = 3.0f;
     [SerializeField] private float pickupForce = 150.0f;
     [SerializeField] private float throwForce = 150.0f;
+	
+	//internal variables
+	private Ray ray;
+	private RaycastHit hit;
+	private bool hasHit = false;
+	private bool activeButton = false;
+
+	//text for interact
+	private bool labelActive = false;
+	private bool labelThrow = false;
+	private int boxWidth = 50;
+	private int boxHeight = 20;
+	private int heightOffset = 20;
+	private Rect labelWorkingArea;
+	private GUIStyle labelStyle = new GUIStyle();
+	private Color labelColour = new Color(0.9f,0.1f,0.1f,1);
+	public Font labelFont;
 
 /*==============================================================================
 									UPDATE
@@ -31,24 +67,45 @@ public class PickUpController : MonoBehaviour
     private void Update()
     {
         // TODO: Don't know what's the best key for holding/release yet
-        if (Input.GetKeyDown(KeyCode.E))
+		//Check if raycast hits object
+		RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
         {
-            if (heldObj == null)
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
-                {
-                    // Only pick up object if it has the tag Pickable
-                    if (hit.transform.gameObject.tag == "Pickable")
+			//Check if raycast hits pickable object
+			// Only pick up object if it has the tag Pickable
+			if (hit.transform.gameObject.tag == "Pickable")
+			{
+				//Check if object is already picked up
+				if(heldObj == null){
+					labelActive = true;
+				} else {
+					labelActive= false;
+				}
+				//'E' pressed
+				if (Input.GetKeyDown(KeyCode.E))
+				{
+					//Pick up item if no item is already picked up
+					if (heldObj == null)
+					{
                         // Pick up object from raycast
                         PickupObject(hit.transform.gameObject);
+						labelActive=false;
+						labelThrow=true;
+					}
+					//Drop picked up item
+					else
+					{
+						// Drop object
+						DropObject();
+						labelThrow=false;
+					}
                 }
-            }
-            else
-            {
-                // Drop object
-                DropObject();
-            }
+			}
+			//Remove gui if no item with Pickable tag is found
+			else 
+			{
+				labelActive=false;
+			}
         }
 
         if (heldObj != null)
@@ -64,6 +121,16 @@ public class PickUpController : MonoBehaviour
             }
         }
     }
+	
+	void OnGUI(){
+		//show only when looking at button
+		if(labelActive){
+			GUI.Label(labelWorkingArea, "Press 'E' to pick up", labelStyle);
+		}
+		if(labelThrow){
+			GUI.Label(labelWorkingArea, "Left Click to throw", labelStyle);
+		}
+	}
 /*==============================================================================
                                 PICK UP METHODS
 ==============================================================================*/
@@ -106,6 +173,7 @@ public class PickUpController : MonoBehaviour
     }
     void ThrowObject()
     {
+		labelThrow = false;
         heldObjRb.useGravity = true;
         heldObjRb.drag = 1;
         heldObjRb.constraints = RigidbodyConstraints.None;

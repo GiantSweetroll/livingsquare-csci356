@@ -10,12 +10,12 @@ public class PlayerReset : MonoBehaviour
 
     void Start()
     {
-		//get player tranform
+		//get player transform
 		playerTF = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
 		//no collision with world, ground and walls
-		Physics.IgnoreLayerCollision(4, 0);
-		Physics.IgnoreLayerCollision(4, 9);
-		Physics.IgnoreLayerCollision(4, 10);
+		//Physics.IgnoreLayerCollision(4, 0);
+		//Physics.IgnoreLayerCollision(4, 9);
+		//Physics.IgnoreLayerCollision(4, 10);
     }
 	
 	//trigged when player collides
@@ -25,6 +25,10 @@ public class PlayerReset : MonoBehaviour
 		{
 			//resets after 1.5 seconds
 			Invoke(nameof(reset), 0f);
+		}
+		if(col.gameObject.tag == "Pickable")
+		{
+			col.gameObject.GetComponent<pickable>().respawn();
 		}
 	}
 	

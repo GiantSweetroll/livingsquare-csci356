@@ -99,7 +99,7 @@ public class Button : MonoBehaviour
 	void OnGUI(){
 		//show only when looking at button
 		if(labelActive){
-			GUI.Label(labelWorkingArea, "Click Button", labelStyle);
+			GUI.Label(labelWorkingArea, "Left Click", labelStyle);
 		}
 	}
 

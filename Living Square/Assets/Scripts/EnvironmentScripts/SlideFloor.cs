@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bridge : MonoBehaviour
+public class SlideFloor : MonoBehaviour
 {
 	private Animator Animator;
-	public int BridgeID;
+	public int ID;
 	
     void Start(){
-		Animator = this.GetComponent<Animator>();
+		Animator = GetComponent<Animator>();
     }
 	
-	public void OnButtonPress(Component invoker, object arg){
-		//check if right object that triggered this
+	public void OnButtonPress(Component invoker, object arg)
+	{
 		if(invoker is Button && arg is bool){
 			bool state = (bool)arg;
-			//check if ids match
-			if(((Button)invoker).ButtonID == BridgeID){
+			if(((Button)invoker).ButtonID == ID){
 				if(state){
 					open();
+				}
+				else{
+					close();
 				}
 			}
 		}
 	}
-	
+
 	void open()
 	{
 		Animator.SetTrigger("Open");
@@ -39,4 +41,5 @@ public class Bridge : MonoBehaviour
 	{
 		Animator.SetTrigger("Idle");
 	}
+
 }
