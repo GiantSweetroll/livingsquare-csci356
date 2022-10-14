@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * TODO:
- * - Drop object when switching between physical/ethereal form?
- * - Picked up object in ethereal form can pass through walls too?
- * - Only throw selected object?
- * - Can only throw in physical body only?
-*/
 public class PickUpController : MonoBehaviour
 {
 /*==============================================================================
@@ -106,6 +99,10 @@ public class PickUpController : MonoBehaviour
 			{
 				labelActive=false;
 			}
+        }
+        else
+        {
+            labelActive = false;
         }
 
         if (heldObj != null)

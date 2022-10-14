@@ -146,9 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdArea: {fileID: 5238100228471413064}
   heldObj: {fileID: 0}
-  pickupRange: 10
+  pickupRange: 1
   pickupForce: 150
   throwForce: 400
+  labelFont: {fileID: 0}
 --- !u!1 &5238100228037932778
 GameObject:
   m_ObjectHideFlags: 0
