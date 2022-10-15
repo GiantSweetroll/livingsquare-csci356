@@ -42,6 +42,7 @@ public class PickUpController : MonoBehaviour
 	private RaycastHit hit;
 	private bool hasHit = false;
 	private bool activeButton = false;
+    private float originalDrag;
 
 	//text for interact
 	private bool labelActive = false;
@@ -136,6 +137,7 @@ public class PickUpController : MonoBehaviour
         if (pickedObj.GetComponent<Rigidbody>())
         {
             heldObjRb = pickedObj.GetComponent<Rigidbody>();
+            originalDrag = heldObjRb.drag;
             heldObjRb.useGravity = false;
             heldObjRb.drag = 10;
             heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -150,7 +152,7 @@ public class PickUpController : MonoBehaviour
     public void DropObject()
     {
         heldObjRb.useGravity = true;
-        heldObjRb.drag = 1;
+        heldObjRb.drag = originalDrag;
         heldObjRb.constraints = RigidbodyConstraints.None;
 
         // Return held object to its original layer
