@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlateWall : MonoBehaviour
+public class PressurePlateWallUp : MonoBehaviour
 {
     /*==============================================================================
                                        VARIABLES
@@ -29,7 +29,7 @@ public class PressurePlateWall : MonoBehaviour
     void Start()
     {
         originalPos = anInteractObj.transform.position;
-        targetPosActivated = originalPos.y - 6;
+        targetPosActivated = originalPos.y + 5;
     }
 
 
@@ -45,9 +45,9 @@ public class PressurePlateWall : MonoBehaviour
 
             if (isDownDirection)
             {
-                if (anInteractObj.transform.position.y > targetPosActivated)
+                if (anInteractObj.transform.position.y < targetPosActivated)
                 {
-                    pos.y -= speed * Time.deltaTime;
+                    pos.y += speed * Time.deltaTime;
                     anInteractObj.transform.position = pos;
                 }
                 else
@@ -63,9 +63,9 @@ public class PressurePlateWall : MonoBehaviour
             else
             {
                 // go up until its orginal position
-                if (anInteractObj.transform.position.y < originalPos.y)
+                if (anInteractObj.transform.position.y > originalPos.y)
                 {
-                    pos.y += speed * Time.deltaTime;
+                    pos.y -= speed * Time.deltaTime;
                     anInteractObj.transform.position = pos;
                 }
                 else
