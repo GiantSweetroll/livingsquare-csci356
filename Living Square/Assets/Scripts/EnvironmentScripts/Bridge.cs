@@ -20,6 +20,9 @@ public class Bridge : MonoBehaviour
 				if(state){
 					open();
 				}
+				else{
+					close();
+				}
 			}
 		}
 	}

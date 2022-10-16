@@ -94,6 +94,7 @@ public class Button : MonoBehaviour
 			}
 			else if(labelActive){labelActive = false;}
 		}
+		else if(labelActive){labelActive = false;}
     }
 	
 	void OnGUI(){
