@@ -8,6 +8,7 @@ public class InvestigateState : EnemyAiState
     Vector3 playerLastPosition; // gets players last known position
     float time = 0.0f; // tracks time
     float timeToWait = 2.0f; // controls the time it takes for AI to walk to players last known position
+    bool soundPlaying = false;
 
     public void Enter(AiAgent agent)
     {
@@ -26,6 +27,8 @@ public class InvestigateState : EnemyAiState
         Quaternion lookRotation = Quaternion.LookRotation(turnTowardTarget);
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5);
 
+
+
     }
 
     public void Exit(AiAgent agent)
@@ -40,7 +43,7 @@ public class InvestigateState : EnemyAiState
             agent.chasingPlayer = false;
         }
 
-        agent.agentAudio.Stop();
+        
     }
 
     public StateId GetId()
@@ -50,6 +53,8 @@ public class InvestigateState : EnemyAiState
 
     public void Update(AiAgent agent)
     {
+        
+       
         // first if statement is if the enemy spots the player but is not currently chasing the player
         time += Time.deltaTime;
         if(time > timeToWait && !agent.chasingPlayer) // has agent wait before moving towards player position

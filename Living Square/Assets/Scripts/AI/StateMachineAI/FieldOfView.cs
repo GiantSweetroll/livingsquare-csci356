@@ -64,6 +64,7 @@ public class FieldOfView : MonoBehaviour
                         // if it's less than the spotted distance then AI will chase player as player is close
                         if (distanceToTarget > spottedDistance && !agent.playerSeen && !agent.chasingPlayer)
                         {
+                            
                             agent.statemachine.updateCurrentState(StateId.Investigate);
 
                         }
