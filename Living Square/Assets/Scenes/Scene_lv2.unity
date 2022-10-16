@@ -946,12 +946,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5866ef35bec9e1469d31fe909cfc099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BridgeID: 0
 --- !u!1 &1438589873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1747265634657750581, guid: d53cb0992da637f4cb0e3c3e905746fc,
     type: 3}
   m_PrefabInstance: {fileID: 626123931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1438589874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438589873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb607b2bf1e9c4848b7254bb0e7982ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextSceneID: 1
+  sceneName: Scene_lv3
 --- !u!114 &1438589875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,7 +979,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7e53bf437beb846aedf4dda165cb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anInteractObj: {fileID: 1208552490}
+  OnButtonTriggered: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  ButtonID: 1
+  labelFont: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+--- !u!114 &1438589876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438589873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c929e230adc94064aa3f8dfec3d74185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: 5f446d9ba1d37104f85096f9de1e357e, type: 2}
+  anEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1438589874}
+        m_MethodName: OnButtonPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1964827823
 GameObject:
   m_ObjectHideFlags: 0
