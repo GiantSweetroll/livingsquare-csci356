@@ -16,11 +16,11 @@ public class NormalMenu : MonoBehaviour
 
 	//title settings
 	public Font titleFont;
-	private Color titleColour = new Color(1,1,1,1);
+	private Color titleColour = new Color(1, 1, 1, 1);
 	//menu settings
 	public Font menuFont;
-	private Color menuColour = new Color(1,1,1,1);
-	private Color menuHoverColour = new Color(0.9f,0.5f,0,1);
+	private Color menuColour = new Color(1, 1, 1, 1);
+	private Color menuHoverColour = new Color(0.9f, 0.5f, 0, 1);
 
 
 	//title style
@@ -34,6 +34,13 @@ public class NormalMenu : MonoBehaviour
 	private Rect titleBox;
 	private Rect buttonBox1;
 	private Rect buttonBox2;
+
+	// Game over messages
+	private static System.Random random = new System.Random();
+	[SerializeField] private string[] gameOverMessages = {
+		"YOU\nFAILED",
+		"GAME\nOVER"
+	};
 
     void Start(){      
 		//centered box on screen
@@ -129,7 +136,11 @@ public class NormalMenu : MonoBehaviour
 
 	public void openNormalMenu(bool state){menuActive = state;}
 	public void openDeathMenu(bool state){
-		message = "YOU\nFAILED";
+	
+		int index = random.Next(gameOverMessages.Length);
+		message = gameOverMessages[index];
+
+		//message = "YOU\nFAILED";
 		menuActive = state;
 	}
 }
