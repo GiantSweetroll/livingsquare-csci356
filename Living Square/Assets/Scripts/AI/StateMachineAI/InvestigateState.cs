@@ -85,6 +85,7 @@ public class InvestigateState : EnemyAiState
             }
         } 
         // if statement for if the enemy is currently chasing the player but can no longer see the player
+        // as it was chasing but can no longer see the player we want the enemy to continue running to the last known position
         else if (agent.chasingPlayer)
         {
             agent.navAgent.SetDestination(playerLastPosition); // goes to last known position

@@ -71,8 +71,13 @@ public class FieldOfView : MonoBehaviour
                         // player is close:
                         else
                         {
-                            agent.playerSeen = true;
-                            agent.statemachine.updateCurrentState(StateId.ChasePlayer);
+                            if(agent.statemachine.currentState != StateId.ChasePlayer)
+                            {
+                                agent.playerSeen = true;
+                                agent.statemachine.updateCurrentState(StateId.ChasePlayer);
+
+                            }
+
                         }
 
                     }
