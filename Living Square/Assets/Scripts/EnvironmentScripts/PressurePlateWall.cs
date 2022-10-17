@@ -11,8 +11,6 @@ public class PressurePlateWall : MonoBehaviour
     public float speed = 10f;
     [HideInInspector] public bool isFullDown = false, isFullUp = true;
 
-    //Events
-    public EventManager OnTriggered, OnRelease;
 
     // Flags
     private bool isDownDirection = true, isTransitioning = false;
@@ -21,6 +19,7 @@ public class PressurePlateWall : MonoBehaviour
     private Vector3 originalPos;
     private float targetPosActivated;
     public GameObject anInteractObj;
+    public int PlateID;
 
     /*==============================================================================
                                         START
@@ -54,10 +53,6 @@ public class PressurePlateWall : MonoBehaviour
                 {
                     isFullDown = true;
                     isTransitioning = false;
-
-                    // Perform action when pressure plate is activated
-                    if (OnTriggered != null)
-                        OnTriggered.RaiseEvent(this, true);
                 }
             }
             else
@@ -79,10 +74,6 @@ public class PressurePlateWall : MonoBehaviour
 
                     isFullUp = true;
                     isTransitioning = false;
-
-                    // Perform action when pressure plate is activated
-                    if (OnRelease != null)
-                        OnRelease.RaiseEvent(this, true);
                 }
             }
         }

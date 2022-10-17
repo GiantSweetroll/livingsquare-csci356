@@ -20,10 +20,11 @@ public class PressurePlate : MonoBehaviour
     // internal variables
     private Vector3 originalPos;
     private float targetPosActivated;
+    public int PlateID;
 
-/*==============================================================================
-                                    START
-==============================================================================*/
+    /*==============================================================================
+                                        START
+    ==============================================================================*/
     // Start is called before the first frame update
     void Start()
     {
