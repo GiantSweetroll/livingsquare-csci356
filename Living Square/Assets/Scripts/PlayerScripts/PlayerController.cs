@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour{
 	public LayerMask groundMask;
 
 	//Animation Objects
-	Animator charAnim;
+	//Animator charAnim;
 
 /*==============================================================================
 									START
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour{
 		// get reference to PickUpController script
 		pickupController = aMainCamera.GetComponent<PickUpController>();
 
-		charAnim = GetComponent<Animator>();
+		//charAnim = GetComponent<Animator>();
     }
 
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour{
 		// Player jump
 		if (Input.GetButtonDown("Jump") && isGrounded && !isInstantiated)
         {
-            charAnim.SetTrigger("jumping");
+           // charAnim.SetTrigger("jumping");
             thisRBody.AddForce(transform.up * JUMP_FORCE, ForceMode.Impulse);
 			
         }
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour{
 			// Create Ethereal form object
 			EtherealInstance = Instantiate(EtherealPrefab, transform.position, transform.rotation);
 			aMainCamera.transform.parent = EtherealInstance.transform;
-			charAnim.SetTrigger("casting");
+			//charAnim.SetTrigger("casting");
 		}
 		// Disable ethereal mode
 		else

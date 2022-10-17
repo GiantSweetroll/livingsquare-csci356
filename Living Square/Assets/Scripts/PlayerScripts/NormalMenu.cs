@@ -40,7 +40,8 @@ public class NormalMenu : MonoBehaviour
 	private static System.Random random = new System.Random();
 	[SerializeField] private string[] gameOverMessages = {
 		"YOU\nFAILED",
-		"GAME\nOVER"
+		"GAME\nOVER",
+		"WASTED"
 	};
 
     void Start(){      
