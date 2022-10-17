@@ -8,6 +8,7 @@ public class InvestigateState : EnemyAiState
     Vector3 playerLastPosition; // gets players last known position
     float time = 0.0f; // tracks time
     float timeToWait = 2.0f; // controls the time it takes for AI to walk to players last known position
+    float trackRunTime = 0.0f;
     bool soundPlaying = false;
 
     public void Enter(AiAgent agent)
@@ -22,11 +23,12 @@ public class InvestigateState : EnemyAiState
         playerLastPosition = GameObject.FindWithTag("Player").transform.position; // gets last position player was spotted
         
         // script rotates the agent towards where it spotted the player
-        var turnTowardTarget = agent.navAgent.steeringTarget;
-        Vector3 direction = (turnTowardTarget - agent.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(turnTowardTarget);
+        Quaternion lookRotation = Quaternion.LookRotation(playerLastPosition - agent.transform.position);
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5);
 
+
+        time = 0.0f;
+        trackRunTime = 0.0f;
 
 
     }
@@ -68,7 +70,7 @@ public class InvestigateState : EnemyAiState
 
             agent.anim.SetBool("walking", true);
             
-            agent.navAgent.SetDestination(playerLastPosition);
+            agent.navAgent.SetDestination(playerLastPosition); // sets destination to last known position
 
 
             // checks if nav agent has reached destination (new code which may need to be implemented in other scripts)
@@ -98,12 +100,18 @@ public class InvestigateState : EnemyAiState
 
             if (!agent.navAgent.pathPending) // checks if a path is pending
             {
+                trackRunTime += Time.deltaTime;
                 if (agent.navAgent.remainingDistance <= agent.navAgent.stoppingDistance) // checks if it's within stopping distance of the destination
                 {
                     if (!agent.navAgent.hasPath || agent.navAgent.velocity.sqrMagnitude == 0f) // checks if it still has a path to follow
                     {
                         agent.statemachine.updateCurrentState(StateId.Idle);
                     }
+                } 
+                // if enemy cannot make it to position within set amount of time, will go back to idle. This is to prevent any error with agent running into walls or in circles.
+                else if(trackRunTime > timeToWait)
+                {
+                    agent.statemachine.updateCurrentState(StateId.Idle);
                 }
             }
 

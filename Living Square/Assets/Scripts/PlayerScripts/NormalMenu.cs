@@ -34,6 +34,7 @@ public class NormalMenu : MonoBehaviour
 	private Rect titleBox;
 	private Rect buttonBox1;
 	private Rect buttonBox2;
+	private Rect buttonBox3;
 
 	// Game over messages
 	private static System.Random random = new System.Random();
@@ -79,8 +80,9 @@ public class NormalMenu : MonoBehaviour
 
 		//create title and menu box area
 		titleBox = new Rect(0, 20, workingAreaWidth, 200);
-		buttonBox1 = new Rect(0, 250, workingAreaWidth, 25);
-		buttonBox2 = new Rect(0, 300, workingAreaWidth, 25);
+		buttonBox1 = new Rect(0, 200, workingAreaWidth, 25);
+		buttonBox2 = new Rect(0, 250, workingAreaWidth, 25);
+		buttonBox3 = new Rect(0, 300, workingAreaWidth, 25);
     }
 
 	void Update(){
@@ -124,7 +126,17 @@ public class NormalMenu : MonoBehaviour
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 
-			if(GUI.Button(buttonBox2, "QUIT", menuStyle)){
+			if(GUI.Button(buttonBox2, "RETURN TO MENU", menuStyle)){
+				if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
+            	Cursor.lockState = CursorLockMode.None;
+				menuActive = false;
+				//lighting may not generate in editor debug mode when loading scene
+				//to fix (important go to "Scene_lvl1" first):  
+				//Windows > Rendering > lighting settings > tick Auto Generate
+				SceneManager.LoadScene("TitleMenu");
+			}
+
+			if(GUI.Button(buttonBox3, "QUIT", menuStyle)){
 				//this function is ignored by the debug editor and works only when
 				// as a standalone application
 				Application.Quit();

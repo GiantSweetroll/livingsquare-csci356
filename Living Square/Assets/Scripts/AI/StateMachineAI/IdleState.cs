@@ -31,8 +31,10 @@ public class IdleState : EnemyAiState
     public void Update(AiAgent agent)
     {
         time += Time.deltaTime;
+        // waits til time is higher than idle time
         if (time > idleTime)
         {
+            // checks if enemy is non-patrolling or patrolling enemy
             if (!agent.config.isStaticEnemy) {
                 agent.statemachine.updateCurrentState(StateId.Patrol);
             } 
