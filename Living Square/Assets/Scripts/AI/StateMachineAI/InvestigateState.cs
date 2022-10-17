@@ -70,7 +70,7 @@ public class InvestigateState : EnemyAiState
 
             agent.anim.SetBool("walking", true);
             
-            agent.navAgent.SetDestination(playerLastPosition);
+            agent.navAgent.SetDestination(playerLastPosition); // sets destination to last known position
 
 
             // checks if nav agent has reached destination (new code which may need to be implemented in other scripts)
@@ -108,6 +108,7 @@ public class InvestigateState : EnemyAiState
                         agent.statemachine.updateCurrentState(StateId.Idle);
                     }
                 } 
+                // if enemy cannot make it to position within set amount of time, will go back to idle. This is to prevent any error with agent running into walls or in circles.
                 else if(trackRunTime > timeToWait)
                 {
                     agent.statemachine.updateCurrentState(StateId.Idle);

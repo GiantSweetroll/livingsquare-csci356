@@ -5,15 +5,15 @@ using UnityEngine;
 public class PatrolState : EnemyAiState
 {
 
-    Transform[] waypoints;
-    Transform wayPointParentTransf;
+    Transform[] waypoints; // to hold all waypoints
+    Transform wayPointParentTransf; // to hold waypoint parent
     public int currentPoint = 0;
     private Transform target;
 
     public void Enter(AiAgent agent)
     {
-        agent.anim.SetBool("walking", true);
-        agent.agentAudio.Walk();
+        agent.anim.SetBool("walking", true); // sets walking animation
+        agent.agentAudio.Walk(); // starts walk audio
         wayPointParentTransf = agent.config.waypointParent.transform; // gets waypoint parent from config
 
         // instantiates tranform array with number of children of waypoint parent
@@ -45,6 +45,7 @@ public class PatrolState : EnemyAiState
         // checks if current point is the not at the last point
         if (currentPoint < waypoints.Length)
         {
+            // gets next waypoint
             target = waypoints[currentPoint];
             agent.navAgent.SetDestination(target.position); // sets nav agent destination
             if (Vector3.Distance(agent.navAgent.transform.position, target.position) <= 2) // stops when it's less than or = 2 distance
