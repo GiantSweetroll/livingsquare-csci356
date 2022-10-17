@@ -27,7 +27,12 @@ public class InvestigateState : EnemyAiState
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5);
 
 
-        time = 0.0f;
+        if (!agent.playerSpotted)
+        {
+            time = 0.0f;
+            agent.playerSpotted = true;
+        }
+        
         trackRunTime = 0.0f;
 
 
@@ -45,7 +50,9 @@ public class InvestigateState : EnemyAiState
             agent.chasingPlayer = false;
         }
 
+
         
+
     }
 
     public StateId GetId()

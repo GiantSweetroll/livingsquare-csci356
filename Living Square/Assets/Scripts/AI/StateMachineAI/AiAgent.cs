@@ -27,6 +27,7 @@ public class AiAgent : MonoBehaviour
 
     // variables for AI to access player information
     public bool playerSeen = false;
+    public bool playerSpotted = false;
     public bool chasingPlayer = false;
     public Transform playerLocation;
     public bool hasPath = false;

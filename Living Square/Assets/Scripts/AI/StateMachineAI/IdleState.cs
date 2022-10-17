@@ -10,6 +10,7 @@ public class IdleState : EnemyAiState
 
     public void Enter(AiAgent agent)
     {
+        agent.playerSpotted = false;
         time = 0;
         idleTime = agent.config.idleTime; // idle time can be changed in config file
         agent.agentAudio.Stop();
