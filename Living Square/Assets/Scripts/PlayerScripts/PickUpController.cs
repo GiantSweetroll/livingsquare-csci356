@@ -186,4 +186,10 @@ public class PickUpController : MonoBehaviour
         heldObjRb.transform.parent = null;
         heldObj = null;
     }
+
+    public void ResetLabelFlags()
+    {
+        labelActive = false;
+        labelThrow = false;
+    }
 }
