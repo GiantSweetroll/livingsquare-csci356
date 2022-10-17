@@ -8,6 +8,7 @@ public class InvestigateState : EnemyAiState
     Vector3 playerLastPosition; // gets players last known position
     float time = 0.0f; // tracks time
     float timeToWait = 2.0f; // controls the time it takes for AI to walk to players last known position
+    float trackRunTime = 0.0f;
     bool soundPlaying = false;
 
     public void Enter(AiAgent agent)
@@ -25,6 +26,9 @@ public class InvestigateState : EnemyAiState
         Quaternion lookRotation = Quaternion.LookRotation(playerLastPosition - agent.transform.position);
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5);
 
+
+        time = 0.0f;
+        trackRunTime = 0.0f;
 
 
     }
@@ -96,12 +100,17 @@ public class InvestigateState : EnemyAiState
 
             if (!agent.navAgent.pathPending) // checks if a path is pending
             {
+                trackRunTime += Time.deltaTime;
                 if (agent.navAgent.remainingDistance <= agent.navAgent.stoppingDistance) // checks if it's within stopping distance of the destination
                 {
                     if (!agent.navAgent.hasPath || agent.navAgent.velocity.sqrMagnitude == 0f) // checks if it still has a path to follow
                     {
                         agent.statemachine.updateCurrentState(StateId.Idle);
                     }
+                } 
+                else if(trackRunTime > timeToWait)
+                {
+                    agent.statemachine.updateCurrentState(StateId.Idle);
                 }
             }
 
