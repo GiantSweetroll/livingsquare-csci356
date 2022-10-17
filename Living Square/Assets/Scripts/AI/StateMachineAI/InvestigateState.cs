@@ -22,9 +22,7 @@ public class InvestigateState : EnemyAiState
         playerLastPosition = GameObject.FindWithTag("Player").transform.position; // gets last position player was spotted
         
         // script rotates the agent towards where it spotted the player
-        var turnTowardTarget = agent.navAgent.steeringTarget;
-        Vector3 direction = (turnTowardTarget - agent.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(turnTowardTarget);
+        Quaternion lookRotation = Quaternion.LookRotation(playerLastPosition - agent.transform.position);
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5);
 
 
