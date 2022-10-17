@@ -122,11 +122,7 @@ public class PlayerController : MonoBehaviour{
 
 		// Drop any objects currently being picked up
 		if (pickupController.heldObj != null)
-        {
 			pickupController.DropObject();
-			pickupController.ResetLabelFlags();
-		}
-		
 
 		// Enable ethereal mode
 		if (isEthereal)

@@ -104,7 +104,7 @@ public class TitleMenuGUI : MonoBehaviour
 				//lighting may not generate in editor debug mode when loading scene
 				//to fix (important go to "Scene_lvl1" first):  
 				//Windows > Rendering > lighting settings > tick Auto Generate
-				SceneManager.LoadScene("Scene_lvl1");
+				SceneManager.LoadScene("Scene_lv3");
 			}
 
 			if(GUI.Button(buttonBox2, "LEVEL SELECT", menuStyle)){

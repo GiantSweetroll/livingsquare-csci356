@@ -30,6 +30,15 @@ public class Collect : MonoBehaviour
 			rend.enabled = false;
 			Barrier.GetComponent<Collider>().enabled = false;
 		}
+		
+		if(num==5){
+			if(col.gameObject.tag=="Player")
+			{
+				GameObject door1 = GameObject.Find("door1");
+				GameObject door2 = GameObject.Find("door2");
+				
+			}
+		}
 	}
 	
 	void OnTriggerExit(Collider col)
