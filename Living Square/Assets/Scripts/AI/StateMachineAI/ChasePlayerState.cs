@@ -11,7 +11,8 @@ public class ChasePlayerState : EnemyAiState
     {
         // if Ai enters this state then we have it start running and set chasing player to true
         agent.anim.SetBool("running", true);
-        if(!agent.agentAudio.audioSource.isPlaying) agent.agentAudio.Run();
+        //if(!agent.agentAudio.audioSource.isPlaying) agent.agentAudio.Run();
+        agent.agentAudio.Run();
 
         agent.chasingPlayer = true;
 

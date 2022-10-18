@@ -34,9 +34,6 @@ public class InvestigateState : EnemyAiState
             trackRunTime = 0.0f;
         }
 
-
-        Debug.Log(time);
-
     }
 
     public void Exit(AiAgent agent)
