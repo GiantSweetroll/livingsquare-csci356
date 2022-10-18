@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     // internal variables
     private float mouseX = 0.0f;
     private float mouseY = 0.0f;
-	public bool mouseActive = true;
+		bool mouseActive = true;
 
 	//crosshair point area size
 	//crosshair is active or not can be turned off
@@ -113,5 +113,10 @@ public class CameraController : MonoBehaviour
 	//can be changed when accessing menu or upon death
 	public void setCrosshairActive(bool state){
 		crosshairActive = state;
+	}
+	
+	public void setmouseActive()
+	{
+		mouseActive = !mouseActive;
 	}
 }

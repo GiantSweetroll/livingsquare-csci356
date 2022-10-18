@@ -7,6 +7,10 @@ public class PlayerReset : MonoBehaviour
 {
 	private Vector3 resetPos = new Vector3(0,2,0);
 	private Transform playerTF;
+	private GameObject player;
+	private GameObject camera;
+	private CameraController CamCont;
+	private AudioListener audio;
 	
 	private bool menuActive = false;
 	private string message = "MENU";
@@ -43,6 +47,10 @@ public class PlayerReset : MonoBehaviour
     {
 		//get player transform
 		playerTF = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
+		player = GameObject.Find("Player");
+		camera = GameObject.Find("Camera");
+		CamCont = camera.GetComponent<CameraController>();
+		audio = camera.GetComponent<AudioListener>();
 		//no collision with world, ground and walls
 		//Physics.IgnoreLayerCollision(4, 0);
 		//Physics.IgnoreLayerCollision(4, 9);
@@ -68,7 +76,7 @@ public class PlayerReset : MonoBehaviour
 		menuStyle.alignment = TextAnchor.UpperCenter;
 		menuStyle.normal.textColor = menuColour;
 		menuStyle.normal.background = Texture2D.blackTexture;
-		//hover does not work unless there is a texture underneath
+			//hover does not work unless there is a texture underneath
 		menuStyle.hover.textColor = menuHoverColour; 
 		//change colour of basic gray texture
 		aTex = Texture2D.grayTexture;
@@ -99,6 +107,8 @@ public class PlayerReset : MonoBehaviour
 			Time.timeScale = 0.0f;
 			Cursor.lockState = CursorLockMode.None;
 			menuActive = true;
+			CamCont.setmouseActive();
+			audio.enabled=false;
 		}
 		if(col.gameObject.tag == "Pickable")
 		{
