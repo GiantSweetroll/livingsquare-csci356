@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour{
         {
 			charAnim.SetBool("jumping", false);
 
-			if (mvX > 0 || mvZ > 0)
+			if (mvX != 0 || mvZ != 0)
             {
 				//Debug.Log("RUNNING");
 				charAnim.SetBool("running", true);
