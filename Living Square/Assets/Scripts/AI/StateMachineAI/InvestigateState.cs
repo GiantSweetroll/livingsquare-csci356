@@ -9,7 +9,7 @@ public class InvestigateState : EnemyAiState
     float time = 0.0f; // tracks time
     float timeToWait = 2.0f; // controls the time it takes for AI to walk to players last known position
     float trackRunTime = 0.0f;
-    bool soundPlaying = false;
+    bool walkingToPlayer = false;
 
     public void Enter(AiAgent agent)
     {
@@ -31,10 +31,11 @@ public class InvestigateState : EnemyAiState
         {
             time = 0.0f;
             agent.playerSpotted = true;
+            trackRunTime = 0.0f;
         }
-        
-        trackRunTime = 0.0f;
 
+
+        Debug.Log(time);
 
     }
 
@@ -43,14 +44,13 @@ public class InvestigateState : EnemyAiState
         // sets walking to false
         // if was chasing the player but can no longer see the player then it will 
         // set running to false and set chasing player to false
-        agent.anim.SetBool("walking", false);
         if (agent.chasingPlayer && !agent.playerSeen)
         {
             agent.anim.SetBool("running", false);
             agent.chasingPlayer = false;
         }
 
-
+        walkingToPlayer = false;
         
 
     }
@@ -72,13 +72,18 @@ public class InvestigateState : EnemyAiState
             // only plays audio if it currently isnt
             if (!agent.agentAudio.audioSource.isPlaying)
             {
-                agent.agentAudio.Walk();
+                agent.agentAudio.Walk();            
             }
 
-            agent.anim.SetBool("walking", true);
             
-            agent.navAgent.SetDestination(playerLastPosition); // sets destination to last known position
+            if (!walkingToPlayer)
+            {
+                agent.navAgent.SetDestination(playerLastPosition); // sets destination to last known position
+                agent.anim.SetBool("walking", true);
+                walkingToPlayer = true;
 
+            }
+           
 
             // checks if nav agent has reached destination (new code which may need to be implemented in other scripts)
             // waits for agent to finish it's path before going back to idle state

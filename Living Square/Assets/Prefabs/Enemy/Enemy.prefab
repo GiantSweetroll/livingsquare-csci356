@@ -792,10 +792,10 @@ GameObject:
   - component: {fileID: 7896543759222915086}
   - component: {fileID: 7896543759215210054}
   - component: {fileID: 4743022232161708213}
-  - component: {fileID: 4763066465838287042}
-  - component: {fileID: 6095331065474498472}
   - component: {fileID: 6084281075125668970}
   - component: {fileID: 5581129779205108398}
+  - component: {fileID: 4763066465838287042}
+  - component: {fileID: 6095331065474498472}
   - component: {fileID: 4671713566473472389}
   - component: {fileID: 2971235350022427676}
   m_Layer: 0
@@ -863,46 +863,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4763066465838287042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896543759222496366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae9b7f4f8b978943bab13b9068755de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entryState: 0
-  navAgent: {fileID: 0}
-  config: {fileID: 0}
-  anim: {fileID: 0}
-  currentState: 0
-  fov: {fileID: 0}
-  agentAudio: {fileID: 0}
-  playerSeen: 0
-  chasingPlayer: 0
-  playerLocation: {fileID: 0}
-  hasPath: 0
---- !u!114 &6095331065474498472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896543759222496366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de5414df541b46345b13a7cc52ae31a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewAngle: 70
-  radius: 15
-  spottedDistance: 7
-  playerSeen: 0
-  player: {fileID: 0}
 --- !u!82 &6084281075125668970
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1013,6 +973,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   agent: {fileID: 0}
+--- !u!114 &4763066465838287042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896543759222496366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae9b7f4f8b978943bab13b9068755de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryState: 0
+  navAgent: {fileID: 0}
+  config: {fileID: 0}
+  anim: {fileID: 0}
+  currentState: 0
+  fov: {fileID: 0}
+  agentAudio: {fileID: 0}
+  player: {fileID: 0}
+  playerSeen: 0
+  playerSpotted: 0
+  chasingPlayer: 0
+  playerLocation: {fileID: 0}
+  hasPath: 0
+--- !u!114 &6095331065474498472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896543759222496366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5414df541b46345b13a7cc52ae31a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewAngle: 70
+  radius: 15
+  spottedDistance: 7
+  playerSeen: 0
+  player: {fileID: 0}
 --- !u!136 &4671713566473472389
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1039,6 +1041,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764db5d77eca97849a1d359108f792a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleFont: {fileID: 0}
+  menuFont: {fileID: 0}
+  gameOverMessages:
+  - 'YOU
+
+    FAILED'
+  - 'GAME
+
+    OVER'
+  - WASTED
 --- !u!1 &7896543759222496368
 GameObject:
   m_ObjectHideFlags: 0

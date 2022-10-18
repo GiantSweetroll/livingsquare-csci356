@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class ChasePlayerState : EnemyAiState
 {
+    private GameObject player;
+
     public void Enter(AiAgent agent)
     {
         // if Ai enters this state then we have it start running and set chasing player to true
@@ -16,6 +18,8 @@ public class ChasePlayerState : EnemyAiState
         // because ai is now aware of player we increase the fov angle of the Ai and the spotted/detection radius
         agent.fov.viewAngle = 180.0f;
         agent.fov.spottedDistance = agent.fov.radius;
+
+        player = GameObject.FindWithTag("Player");
     }
 
     public void Exit(AiAgent agent)
@@ -47,7 +51,7 @@ public class ChasePlayerState : EnemyAiState
         if (agent.playerSeen && agent.chasingPlayer)
         {
 
-           agent.navAgent.SetDestination(agent.playerLocation.position);
+           agent.navAgent.SetDestination(player.transform.position);
             
             
         }

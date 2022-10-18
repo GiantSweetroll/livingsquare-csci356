@@ -29,12 +29,24 @@ public class AiAgent : MonoBehaviour
     public bool playerSeen = false;
     public bool playerSpotted = false;
     public bool chasingPlayer = false;
-    public Transform playerLocation;
     public bool hasPath = false;
+
+    // AI info
+    [HideInInspector]
+    public Vector3 spawnPos;
+    [HideInInspector]
+    public Quaternion spawnRot;
+
+    private void Awake()
+    {
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+
         // instantiates statemachine using agent and assigns components to variables for easy access
         statemachine = new StateMachine(this); // AIAgent sends itself as an arg to statemachine so statemachine can access variables
         navAgent = GetComponent<NavMeshAgent>();
@@ -48,21 +60,14 @@ public class AiAgent : MonoBehaviour
         statemachine.RegisterState(new IdleState());
         statemachine.RegisterState(new InvestigateState());
         statemachine.RegisterState(new ChasePlayerState());
+        statemachine.RegisterState(new GoToStartingPosState());
+        spawnPos = transform.position;
+        spawnRot = transform.rotation;
 
         statemachine.updateCurrentState(entryState); // sets the entry state for the statemachine
 
-        // checks if it's a non-patrolling static enemy and instantiates respective variables
-        if (config.isStaticEnemy)
-        {
-            config.spawnPos = transform.position; // gets the spawn/start position of enemy if it's static (non-patrolling)
-            config.spawnRot = transform.rotation; // gets spawn/start rotation of enemy if it's static (non-patrolling)
-            statemachine.RegisterState(new GoToStartingPosState());
-        }
-
-
         //instantiates playerSeen default to false and gets player location for later use
         playerSeen = false;
-        playerLocation = GameObject.FindWithTag("Player").transform;
 
 
     }

@@ -11,8 +11,10 @@ public class IdleState : EnemyAiState
     public void Enter(AiAgent agent)
     {
         agent.playerSpotted = false;
+        agent.anim.SetBool("walking", false);
         time = 0;
         idleTime = agent.config.idleTime; // idle time can be changed in config file
+
         agent.agentAudio.Stop();
 
         // sets destination to current position of nav agent so it doesn't move
@@ -40,6 +42,7 @@ public class IdleState : EnemyAiState
                 agent.statemachine.updateCurrentState(StateId.Patrol);
             } 
             else{
+                Debug.Log("Going to spawn pos from idle");
                 agent.statemachine.updateCurrentState(StateId.GoToStartingPoint);
             }
 

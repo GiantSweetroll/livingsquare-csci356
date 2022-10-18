@@ -18,14 +18,20 @@ public class FieldOfView : MonoBehaviour
     private LayerMask targetMask; // holds "Player" layer 
     private LayerMask objectMask; // holds "Objects" layer
 
-   
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         agent = this.GetComponent<AiAgent>();
         player = GameObject.FindWithTag("Player");
         targetMask = LayerMask.GetMask("Player");
         objectMask = LayerMask.GetMask("Objects");
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
 
         // default variables (can be changed within the inspector)
         radius = 30.0f; // change this to increase FOV distance/radius
@@ -55,17 +61,24 @@ public class FieldOfView : MonoBehaviour
                 // casts a ray from the enemy to the target, if it hits anything in the object mask then playerSeen will be set false
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, objectMask))
                 {
+
+                    //Debug.Log("Drawing ray to player");
+
+
                     // checks if the nav agent can get to the player by using the path checker script
                     // if no path can be made then agent will go back to idle state
-                    if (agent.pathChecker.checkPath(agent.playerLocation.position))
+                    if (agent.pathChecker.checkPath(player.transform.position))
                     {
                         // checks to see if target/player is greater than the spottedDistance
                         // if greater than spotted distance than AI will investigate, this also checks if playerseen is equal to false
                         // if it's less than the spotted distance then AI will chase player as player is close
                         if (distanceToTarget > spottedDistance && !agent.playerSeen && !agent.chasingPlayer)
                         {
+                            if (!agent.navAgent.pathPending)
+                            {
+                                agent.statemachine.updateCurrentState(StateId.Investigate);
+                            }
                             
-                            agent.statemachine.updateCurrentState(StateId.Investigate);
 
                         }
                         // player is close:

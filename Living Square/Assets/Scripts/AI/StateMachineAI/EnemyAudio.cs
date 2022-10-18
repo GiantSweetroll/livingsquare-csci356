@@ -14,11 +14,13 @@ public class EnemyAudio : MonoBehaviour
     void Start()
     {
         agent = this.GetComponent<AiAgent>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = this.GetComponent<AudioSource>();
+        
 
         audioSource.clip = agent.config.walkSound;
         
     }
+
 
     // Update is called once per frame
     void Update()
