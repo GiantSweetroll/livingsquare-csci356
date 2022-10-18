@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11507,31 +11507,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1285956931894021746, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728430356843549774, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2439347911993363445, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224170381692625641, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224170381692625641, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.92
-      objectReference: {fileID: 0}
     - target: {fileID: 3797895470380007076, guid: 2bd4a019676037c49adfea91aeba33e2,
         type: 3}
       propertyPath: m_RootOrder
@@ -11587,30 +11562,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6674324099781644216, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727597465024673512, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6987923353178078202, guid: 2bd4a019676037c49adfea91aeba33e2,
         type: 3}
       propertyPath: m_Name
       value: enemy_scenelvl4_waypointparent
-      objectReference: {fileID: 0}
-    - target: {fileID: 7111193620004079620, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7257421631584217857, guid: 2bd4a019676037c49adfea91aeba33e2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd4a019676037c49adfea91aeba33e2, type: 3}
