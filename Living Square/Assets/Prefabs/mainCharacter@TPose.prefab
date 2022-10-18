@@ -944,7 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SENS_HOR: 3
   SENS_VER: 2
-  VERTICAL_ROTATE_LIMIT: 45
+  VERTICAL_ROTATE_LIMIT: 55
 --- !u!114 &5488603999829182059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,7 +1003,7 @@ BoxCollider:
   m_GameObject: {fileID: 5488604000023986560}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
