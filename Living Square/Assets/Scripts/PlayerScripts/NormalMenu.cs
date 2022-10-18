@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class NormalMenu : MonoBehaviour
 {
 	private bool menuActive = false;
+	public bool deathMenu = false;
 	private string message = "MENU";
 
 	//working area
@@ -94,16 +95,18 @@ public class NormalMenu : MonoBehaviour
 		#else
         // enable the mouse cursor if Esc pressed
         if (Input.GetKeyDown(KeyCode.Escape)){ 
-		#endif
-			if(!menuActive){
-				if(Time.timeScale == 1.0f){Time.timeScale = 0.0f;}
-            	Cursor.lockState = CursorLockMode.None;
-				menuActive = true;
-			}
-			else{
-				if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
-            	Cursor.lockState = CursorLockMode.Locked;
-				menuActive = false;
+			#endif
+			if(!deathMenu){
+				if(!menuActive){
+					if(Time.timeScale == 1.0f){Time.timeScale = 0.0f;}
+					Cursor.lockState = CursorLockMode.None;
+					menuActive = true;
+				}
+				else{
+					if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
+					Cursor.lockState = CursorLockMode.Locked;
+					menuActive = false;
+				}
 			}
 		}
 	}
@@ -147,7 +150,8 @@ public class NormalMenu : MonoBehaviour
 	   } 
     }
 
-	public void openNormalMenu(bool state){menuActive = state;}
+	public void toggleDeathMenu(){deathMenu = !deathMenu;}
+	
 	public void openDeathMenu(bool state){
 	
 		int index = random.Next(gameOverMessages.Length);

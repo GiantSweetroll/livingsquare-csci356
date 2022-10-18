@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 public class CameraController : MonoBehaviour
 {
     // Settings variables
+	private GameObject player;
+	private bool deathMenu = false;
+	private NormalMenu normMenu;
     public float SENS_HOR = 3f;
     public float SENS_VER = 2f;
     public float VERTICAL_ROTATE_LIMIT = 45f;
@@ -34,6 +37,8 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		player = GameObject.Find("Player");
+		normMenu = player.GetComponent<NormalMenu>();
         // disable the mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -79,7 +84,9 @@ public class CameraController : MonoBehaviour
         // enable the mouse cursor if Esc pressed
         if (Input.GetKeyDown(KeyCode.Escape)){ 
 #endif
-			mouseActive = !mouseActive;
+			if (!normMenu.deathMenu){
+				setmouseActive();
+			}
 		}
     }
     // Method to restrict vertical camera movement
