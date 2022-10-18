@@ -44,7 +44,16 @@ public class PlayerReset : MonoBehaviour
 	private Rect buttonBox2;
 	private Rect buttonBox3;
 
-    void Start()
+	// Game over messages
+	private static System.Random random = new System.Random();
+	[SerializeField]
+	private string[] gameOverMessages = {
+		"YOU\nFAILED",
+		"GAME\nOVER",
+		"WASTED"
+	};
+
+	void Start()
     {
 		//get player transform
 		playerTF = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
@@ -105,7 +114,11 @@ public class PlayerReset : MonoBehaviour
 	void OnTriggerEnter(Collider col)
 	{
 		if(col.gameObject.tag == "Player")
-		{		
+		{
+			// Get randomize death message
+			int index = random.Next(gameOverMessages.Length);
+			message = gameOverMessages[index];
+
 			Time.timeScale = 0.0f;
 			Cursor.lockState = CursorLockMode.None;
 			menuActive = true;

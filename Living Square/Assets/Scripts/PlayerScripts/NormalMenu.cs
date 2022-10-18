@@ -37,14 +37,6 @@ public class NormalMenu : MonoBehaviour
 	private Rect buttonBox2;
 	private Rect buttonBox3;
 
-	// Game over messages
-	private static System.Random random = new System.Random();
-	[SerializeField] private string[] gameOverMessages = {
-		"YOU\nFAILED",
-		"GAME\nOVER",
-		"WASTED"
-	};
-
     void Start(){      
 		//centered box on screen
 		halfWidthStart = (int)((Screen.width - workingAreaWidth) * 0.5);
@@ -153,11 +145,7 @@ public class NormalMenu : MonoBehaviour
 	public void toggleDeathMenu(){deathMenu = !deathMenu;}
 	
 	public void openDeathMenu(bool state){
-	
-		int index = random.Next(gameOverMessages.Length);
-		message = gameOverMessages[index];
-
-		//message = "YOU\nFAILED";
-		menuActive = state;
+        message = "YOU\nFAILED";
+        menuActive = state;
 	}
 }
