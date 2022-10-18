@@ -42,7 +42,6 @@ public class IdleState : EnemyAiState
                 agent.statemachine.updateCurrentState(StateId.Patrol);
             } 
             else{
-                Debug.Log("Going to spawn pos from idle");
                 agent.statemachine.updateCurrentState(StateId.GoToStartingPoint);
             }
 

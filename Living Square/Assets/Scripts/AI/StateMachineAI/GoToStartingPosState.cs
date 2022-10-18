@@ -12,8 +12,6 @@ public class GoToStartingPosState : EnemyAiState
         agent.agentAudio.Walk();
         agent.navAgent.SetDestination(agent.spawnPos); // has agent go back to it's start/spawn destination
 
-        Debug.Log("Go Back to Starting pos IN STATE");
-
     }
 
     public void Exit(AiAgent agent)

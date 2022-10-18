@@ -77,6 +77,9 @@ public class NormalMenu : MonoBehaviour
 		buttonBox1 = new Rect(0, 200, workingAreaWidth, 25);
 		buttonBox2 = new Rect(0, 250, workingAreaWidth, 25);
 		buttonBox3 = new Rect(0, 300, workingAreaWidth, 25);
+
+		// defaults audio listener back to 100% on script restart
+		AudioListener.volume = 1.0f;
     }
 
 	void Update(){
@@ -92,12 +95,14 @@ public class NormalMenu : MonoBehaviour
 				if(!menuActive){
 					if(Time.timeScale == 1.0f){Time.timeScale = 0.0f;}
 					Cursor.lockState = CursorLockMode.None;
+					AudioListener.volume = 0.0f;
 					menuActive = true;
 				}
 				else{
 					if(Time.timeScale == 0.0f){Time.timeScale = 1.0f;}
 					Cursor.lockState = CursorLockMode.Locked;
-					menuActive = false;
+                    AudioListener.volume = 1.0f;
+                    menuActive = false;
 				}
 			}
 		}
