@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour{
 
 		// camera position
 		originalCameraPos = aMainCamera.transform.localPosition;
-		Debug.Log(originalCameraPos);
     }
 
 
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour{
 		mvZ = Input.GetAxis("Vertical");
 
 		// Update animation state
-		if (isGrounded && !isInstantiated)
+		if (isGrounded && !isInstantiated && charAnim != null)
         {
 			charAnim.SetBool("jumping", false);
 
@@ -107,9 +106,12 @@ public class PlayerController : MonoBehaviour{
         {
             thisRBody.AddForce(transform.up * JUMP_FORCE, ForceMode.Impulse);
 
-			// update animation trigger
-			Debug.Log("JUMPING");
-			charAnim.SetBool("jumping", true);
+			if (charAnim != null)
+            {
+				// update animation trigger
+				Debug.Log("JUMPING");
+				charAnim.SetBool("jumping", true);
+			}
 		}
 
 		// If ethereal form object is instantiated
@@ -176,8 +178,11 @@ public class PlayerController : MonoBehaviour{
 			Destroy(EtherealInstance);
 		}
 
-		// update animation state
-		charAnim.SetBool("casting", isEthereal);
+		if (charAnim != null)
+        {
+			// update animation state
+			charAnim.SetBool("casting", isEthereal);
+		}
 
 		// Reset timer
 		etherealTimer = DURATION;
