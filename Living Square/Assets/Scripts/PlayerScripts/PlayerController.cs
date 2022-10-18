@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour{
 	//flags
 	private bool isInstantiated = false;
 	private bool isGrounded = true;
+	//camera
+	private Vector3 originalCameraPos;
 
 	//player Components
 	private Rigidbody thisRBody;
@@ -40,11 +42,11 @@ public class PlayerController : MonoBehaviour{
 	//layer 9 is ground
 	public LayerMask groundMask;
 
-	//Animation Objects
-	//Animator charAnim;
+    //Animation Objects
+    private Animator charAnim;
 
 /*==============================================================================
-									START
+                                    START
 ==============================================================================*/
     // Start is called before the first frame update ie. Constructor
     void Start(){
@@ -57,7 +59,13 @@ public class PlayerController : MonoBehaviour{
 		// get reference to PickUpController script
 		pickupController = aMainCamera.GetComponent<PickUpController>();
 
-		//charAnim = GetComponent<Animator>();
+		// Character animation controller
+        charAnim = GetComponent<Animator>();
+        charAnim.SetTrigger("idle");
+
+		// camera position
+		originalCameraPos = aMainCamera.transform.localPosition;
+		Debug.Log(originalCameraPos);
     }
 
 
@@ -67,9 +75,25 @@ public class PlayerController : MonoBehaviour{
     // Update is called once per frame
 	//should only be used to get input and non physics related code
     void Update(){
+		//Debug.Log(aMainCamera.transform.position); ;
 		//get inputs
 		mvX = Input.GetAxis("Horizontal");
 		mvZ = Input.GetAxis("Vertical");
+
+		// Update animation trigger
+		if (isGrounded && !isInstantiated)
+        {
+			if (mvX > 0 || mvZ > 0)
+            {
+				Debug.Log("RUNNING");
+				charAnim.SetTrigger("running");
+			}
+			else
+            {
+				//Debug.Log("IDLE");
+				charAnim.SetTrigger("idle");
+			}
+		}
 
 		//switch to ethereal
 		if (Input.GetKeyDown(KeyCode.Z))
@@ -82,8 +106,11 @@ public class PlayerController : MonoBehaviour{
         {
            // charAnim.SetTrigger("jumping");
             thisRBody.AddForce(transform.up * JUMP_FORCE, ForceMode.Impulse);
-			
-        }
+
+			// update animation trigger
+			Debug.Log("JUMPING");
+			charAnim.SetTrigger("jumping");
+		}
 
 		// If ethereal form object is instantiated
 		if (isInstantiated){
@@ -115,11 +142,7 @@ public class PlayerController : MonoBehaviour{
 			mvDir = transform.forward * mvZ + transform.right * mvX;
 			//move body
 			thisRBody.MovePosition(transform.position + mvDir * Time.fixedDeltaTime * SPEED);
-
-			
 		}
-
-		
 	}
 
 
@@ -140,18 +163,23 @@ public class PlayerController : MonoBehaviour{
 			// Create Ethereal form object
 			EtherealInstance = Instantiate(EtherealPrefab, transform.position, transform.rotation);
 			aMainCamera.transform.parent = EtherealInstance.transform;
-			//charAnim.SetTrigger("casting");
-		}
-		// Disable ethereal mode
-		else
+
+			// update animation trigger
+			charAnim.SetTrigger("casting");
+        }
+        // Disable ethereal mode
+        else
         {
 			//reset to original body
 			aMainCamera.transform.parent = this.transform;
 			aMainCamera.transform.rotation = this.transform.rotation;
-			aMainCamera.transform.position = this.transform.position;
+			aMainCamera.transform.localPosition = originalCameraPos;
 
 			//destroy the instance
 			Destroy(EtherealInstance);
+
+			// update animation trigger
+			charAnim.SetTrigger("idle");
 		}
 
 		// Reset timer

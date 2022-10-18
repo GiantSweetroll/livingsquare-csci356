@@ -228,7 +228,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.059767
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a,
         type: 3}
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.8520565
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a,
         type: 3}
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdArea: {fileID: 2025160170}
   heldObj: {fileID: 0}
-  pickupRange: 1
+  pickupRange: 3
   pickupForce: 150
   throwForce: 400
   labelFont: {fileID: 0}
@@ -695,7 +695,6 @@ MonoBehaviour:
   SENS_HOR: 3
   SENS_VER: 2
   VERTICAL_ROTATE_LIMIT: 45
-  mouseActive: 1
 --- !u!81 &397656019
 AudioListener:
   m_ObjectHideFlags: 0
@@ -814,6 +813,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ORIGINAL_CHARACTER
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac1a63d95b9f7b4ebb19bf4b9d0ff9a, type: 3}
 --- !u!1 &644875036 stripped
@@ -860,7 +864,7 @@ MonoBehaviour:
   DURATION: 6
   JUMP_FORCE: 189
   aMainCamera: {fileID: 397656015}
-  EtherealPrefab: {fileID: 919132149155446097, guid: 0985d089c128ff747b545edb895cbb7b,
+  EtherealPrefab: {fileID: 8355559741723546631, guid: db8ef86769005bf439889a9e4201e755,
     type: 3}
   groundMask:
     serializedVersion: 2
@@ -877,15 +881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0eeedfb68dfde43a9cf87eff1d1026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathMenu: 0
   titleFont: {fileID: 0}
   menuFont: {fileID: 0}
-  gameOverMessages:
-  - 'YOU
-
-    FAILED'
-  - 'GAME
-
-    OVER'
 --- !u!136 &644875042
 CapsuleCollider:
   m_ObjectHideFlags: 0
