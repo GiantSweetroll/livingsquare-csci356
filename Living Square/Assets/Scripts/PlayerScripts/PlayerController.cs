@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour{
 
 		// Character animation controller
         charAnim = GetComponent<Animator>();
-        charAnim.SetTrigger("idle");
 
 		// camera position
 		originalCameraPos = aMainCamera.transform.localPosition;
@@ -80,18 +79,20 @@ public class PlayerController : MonoBehaviour{
 		mvX = Input.GetAxis("Horizontal");
 		mvZ = Input.GetAxis("Vertical");
 
-		// Update animation trigger
+		// Update animation state
 		if (isGrounded && !isInstantiated)
         {
+			charAnim.SetBool("jumping", false);
+
 			if (mvX > 0 || mvZ > 0)
             {
 				Debug.Log("RUNNING");
-				charAnim.SetTrigger("running");
+				charAnim.SetBool("running", true);
 			}
 			else
             {
 				//Debug.Log("IDLE");
-				charAnim.SetTrigger("idle");
+				charAnim.SetBool("running", false);
 			}
 		}
 
@@ -104,12 +105,11 @@ public class PlayerController : MonoBehaviour{
 		// Player jump
 		if (Input.GetButtonDown("Jump") && isGrounded && !isInstantiated)
         {
-           // charAnim.SetTrigger("jumping");
             thisRBody.AddForce(transform.up * JUMP_FORCE, ForceMode.Impulse);
 
 			// update animation trigger
 			Debug.Log("JUMPING");
-			charAnim.SetTrigger("jumping");
+			charAnim.SetBool("jumping", true);
 		}
 
 		// If ethereal form object is instantiated
@@ -163,9 +163,6 @@ public class PlayerController : MonoBehaviour{
 			// Create Ethereal form object
 			EtherealInstance = Instantiate(EtherealPrefab, transform.position, transform.rotation);
 			aMainCamera.transform.parent = EtherealInstance.transform;
-
-			// update animation trigger
-			charAnim.SetTrigger("casting");
         }
         // Disable ethereal mode
         else
@@ -177,10 +174,10 @@ public class PlayerController : MonoBehaviour{
 
 			//destroy the instance
 			Destroy(EtherealInstance);
-
-			// update animation trigger
-			charAnim.SetTrigger("idle");
 		}
+
+		// update animation state
+		charAnim.SetBool("casting", isEthereal);
 
 		// Reset timer
 		etherealTimer = DURATION;
