@@ -73,9 +73,9 @@ public class PlayerController : MonoBehaviour{
     // Update is called once per frame
 	//should only be used to get input and non physics related code
     void Update(){
-		//Debug.Log(aMainCamera.transform.position); ;
-		//get inputs
-		mvX = Input.GetAxis("Horizontal");
+        //Debug.Log(isGrounded);
+        //get inputs
+        mvX = Input.GetAxis("Horizontal");
 		mvZ = Input.GetAxis("Vertical");
 
 		// Update animation state
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour{
 
 			if (mvX > 0 || mvZ > 0)
             {
-				Debug.Log("RUNNING");
+				//Debug.Log("RUNNING");
 				charAnim.SetBool("running", true);
 			}
 			else
@@ -108,9 +108,9 @@ public class PlayerController : MonoBehaviour{
 
 			if (charAnim != null)
             {
-				// update animation trigger
-				Debug.Log("JUMPING");
-				charAnim.SetBool("jumping", true);
+                // update animation trigger
+                //Debug.Log("JUMPING");
+                charAnim.SetBool("jumping", true);
 			}
 		}
 
