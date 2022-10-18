@@ -57,7 +57,7 @@ public class PlayerReset : MonoBehaviour
     {
 		//get player transform
 		playerTF = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
-		player = GameObject.Find("Player");
+		player = GameObject.FindWithTag("Player");
 		camera = GameObject.Find("Camera");
 		CamCont = camera.GetComponent<CameraController>();
 		audio = camera.GetComponent<AudioListener>();
