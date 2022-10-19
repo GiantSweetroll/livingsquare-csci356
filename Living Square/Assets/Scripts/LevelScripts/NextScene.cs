@@ -18,6 +18,9 @@ public class NextScene : MonoBehaviour
 			if(((Button)invoker).ButtonID == NextSceneID){
 				if(state){
 					//load next scene
+					if(sceneName=="CreditScene"){
+						Cursor.lockState = CursorLockMode.None;
+					}
 					SceneManager.LoadScene(sceneName);
 				}
 			}
