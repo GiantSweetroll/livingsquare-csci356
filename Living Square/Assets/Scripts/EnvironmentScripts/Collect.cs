@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collect : MonoBehaviour
 {
 	public int num;
+	private AudioSource audiosource;
 	private string name;
 	private GameObject Barrier;
 	private Renderer rend;
@@ -17,7 +18,7 @@ public class Collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        audiosource = GetComponent<AudioSource>();
     }
 	
 	void OnTriggerEnter(Collider col)
@@ -29,6 +30,7 @@ public class Collect : MonoBehaviour
 			rend = Barrier.GetComponent<MeshRenderer>();
 			rend.enabled = false;
 			Barrier.GetComponent<Collider>().enabled = false;
+			audiosource.Play(0);
 		}
 		
 		if(num==5){

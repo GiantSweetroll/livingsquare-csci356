@@ -9,6 +9,8 @@ public class PickUpController : MonoBehaviour
 ==============================================================================*/
     void Start()
     {
+		audiosource = GetComponent<AudioSource>();
+		
 		//interact label area under crosshair
 		labelWorkingArea = new Rect(
 			(int)((Screen.width - boxWidth) * 0.5),
@@ -38,6 +40,7 @@ public class PickUpController : MonoBehaviour
     [SerializeField] private float throwForce = 150.0f;
 	
 	//internal variables
+	private AudioSource audiosource;
 	private Ray ray;
 	private RaycastHit hit;
 	private bool hasHit = false;
@@ -115,6 +118,7 @@ public class PickUpController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 // Throw picked up object
+				audiosource.Play(0);
                 ThrowObject();
             }
         }

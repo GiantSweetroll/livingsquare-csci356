@@ -873,11 +873,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1043,14 +1043,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleFont: {fileID: 0}
   menuFont: {fileID: 0}
-  gameOverMessages:
-  - 'YOU
-
-    FAILED'
-  - 'GAME
-
-    OVER'
-  - WASTED
 --- !u!1 &7896543759222496368
 GameObject:
   m_ObjectHideFlags: 0

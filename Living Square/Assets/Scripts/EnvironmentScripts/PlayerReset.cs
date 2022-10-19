@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerReset : MonoBehaviour
 {
+	private AudioSource audiosource;
 	private Vector3 resetPos = new Vector3(0,2,0);
 	private Transform playerTF;
 	private GameObject player;
 	private GameObject camera;
 	private CameraController CamCont;
+	private AudioListener audio;
 	private NormalMenu normMenu;
-	
 	private bool menuActive = false;
 	private string message = "MENU";
 
@@ -43,22 +44,15 @@ public class PlayerReset : MonoBehaviour
 	private Rect buttonBox2;
 	private Rect buttonBox3;
 
-	// Game over messages
-	private static System.Random random = new System.Random();
-	[SerializeField]
-	private string[] gameOverMessages = {
-		"YOU\nFAILED",
-		"GAME\nOVER",
-		"WASTED"
-	};
-
-	void Start()
+    void Start()
     {
+		audiosource = GetComponent<AudioSource>();
 		//get player transform
 		playerTF = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
-		player = GameObject.FindWithTag("Player");
+		player = GameObject.FindGameObjectsWithTag("Player")[0];
 		camera = GameObject.Find("Camera");
 		CamCont = camera.GetComponent<CameraController>();
+		audio = camera.GetComponent<AudioListener>();
 		normMenu = player.GetComponent<NormalMenu>();
 		//no collision with world, ground and walls
 		//Physics.IgnoreLayerCollision(4, 0);
@@ -112,21 +106,18 @@ public class PlayerReset : MonoBehaviour
 	void OnTriggerEnter(Collider col)
 	{
 		if(col.gameObject.tag == "Player")
-		{
-			// Get randomize death message
-			int index = random.Next(gameOverMessages.Length);
-			message = gameOverMessages[index];
-
+		{		
 			Time.timeScale = 0.0f;
 			Cursor.lockState = CursorLockMode.None;
 			menuActive = true;
 			CamCont.setmouseActive();
-			AudioListener.volume = 0;
+			audio.enabled=false;
 			normMenu.toggleDeathMenu();
 		}
 		if(col.gameObject.tag == "Pickable")
 		{
 			col.gameObject.GetComponent<pickable>().respawn();
+			audiosource.Play(0);
 		}
 	}
 	

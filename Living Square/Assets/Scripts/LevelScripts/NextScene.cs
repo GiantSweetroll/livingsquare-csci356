@@ -19,11 +19,21 @@ public class NextScene : MonoBehaviour
 				if(state){
 					//load next scene
 					if(sceneName=="CreditScene"){
-						Cursor.lockState = CursorLockMode.None;
+						Invoke(nameof(unlockCursor), 1.5f);
+						Invoke(nameof(nextScene), 1.5f);
+					} else {
+						Invoke(nameof(nextScene),0f);
 					}
-					SceneManager.LoadScene(sceneName);
 				}
 			}
 		}
+	}
+	
+	private void nextScene(){
+		SceneManager.LoadScene(sceneName);
+	}
+	
+	private void unlockCursor(){
+		Cursor.lockState = CursorLockMode.None;
 	}
 }
