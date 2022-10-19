@@ -24,9 +24,12 @@ public class EtherealController : MonoBehaviour{
 	private Rigidbody thisRBody;
 	private new CapsuleCollider collider;
 
-/*==============================================================================
-									START
-==============================================================================*/
+	//Animation Objects
+	private Animator charAnim;
+
+	/*==============================================================================
+										START
+	==============================================================================*/
 	// Start is called before the first frame update ie. Constructor
 	void Start(){
 		//get the components needed
@@ -39,6 +42,8 @@ public class EtherealController : MonoBehaviour{
 		Physics.IgnoreLayerCollision(11, 10);
 		//get player's collider object
 		collider = GetComponent<CapsuleCollider>();
+		// Character animation controller
+		charAnim = GetComponent<Animator>();
 	}
 
 
@@ -51,6 +56,21 @@ public class EtherealController : MonoBehaviour{
 		//get inputs
         mvX = Input.GetAxis("Horizontal");
         mvZ = Input.GetAxis("Vertical");
+
+		// Update animation state
+		if (charAnim != null)
+		{
+			if (mvX != 0 || mvZ != 0)
+			{
+				//Debug.Log("RUNNING");
+				charAnim.SetBool("running", true);
+			}
+			else
+			{
+				//Debug.Log("IDLE");
+				charAnim.SetBool("running", false);
+			}
+		}
 	}
 
 
