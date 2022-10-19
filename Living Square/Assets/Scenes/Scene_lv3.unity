@@ -7756,6 +7756,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PostProcessingLvl3
       objectReference: {fileID: 0}
+    - target: {fileID: 6157576794087192542, guid: f7f60e3082f524d4999a72e8bf2fc39c,
+        type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6157576794087192543, guid: f7f60e3082f524d4999a72e8bf2fc39c,
         type: 3}
       propertyPath: m_RootOrder
