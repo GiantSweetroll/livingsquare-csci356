@@ -23,7 +23,6 @@ public class WallDown : MonoBehaviour
             if (((PressurePlate)invoker).PlateID == WallID)
             {
                 down();
-                Debug.Log("bruh");
 
             }
         }

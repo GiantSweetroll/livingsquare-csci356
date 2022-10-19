@@ -52,7 +52,6 @@ public class PlayerReset : MonoBehaviour
 		player = GameObject.FindGameObjectsWithTag("Player")[0];
 		camera = GameObject.Find("Camera");
 		CamCont = camera.GetComponent<CameraController>();
-		audio = camera.GetComponent<AudioListener>();
 		normMenu = player.GetComponent<NormalMenu>();
 		//no collision with world, ground and walls
 		//Physics.IgnoreLayerCollision(4, 0);
@@ -111,7 +110,7 @@ public class PlayerReset : MonoBehaviour
 			Cursor.lockState = CursorLockMode.None;
 			menuActive = true;
 			CamCont.setmouseActive();
-			audio.enabled=false;
+			AudioListener.volume = 0.0f;
 			normMenu.toggleDeathMenu();
 		}
 		if(col.gameObject.tag == "Pickable")

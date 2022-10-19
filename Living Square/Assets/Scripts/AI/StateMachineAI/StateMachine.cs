@@ -43,6 +43,7 @@ public class StateMachine
     // function used to Exit current state then change to new state
     public void updateCurrentState(StateId updatedStateId)
     {
+
         GetState(currentState)?.Exit(agent); // calls the Exit function of the current state
         currentState = updatedStateId; // assigns the new current state
         GetState(currentState)?.Enter(agent); // calls the Enter function of the new current state

@@ -39,13 +39,14 @@ public class EnemyAudio : MonoBehaviour
 
     public void Run()
     {
-
+        audioSource.Stop();
         audioSource.clip = agent.config.runSound;
         audioSource.Play();
     }
 
     public void Walk()
     {
+        audioSource.Stop();
         audioSource.clip = agent.config.walkSound;
         audioSource.Play();
 

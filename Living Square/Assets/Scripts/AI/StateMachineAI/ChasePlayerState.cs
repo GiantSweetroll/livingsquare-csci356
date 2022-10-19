@@ -12,7 +12,7 @@ public class ChasePlayerState : EnemyAiState
         // if Ai enters this state then we have it start running and set chasing player to true
         agent.anim.SetBool("running", true);
         //if(!agent.agentAudio.audioSource.isPlaying) agent.agentAudio.Run();
-        agent.agentAudio.Run();
+        
 
         agent.chasingPlayer = true;
 
@@ -51,8 +51,9 @@ public class ChasePlayerState : EnemyAiState
         // if so then the ai will continue to update its destination to the players location
         if (agent.playerSeen && agent.chasingPlayer)
         {
+            if(!agent.agentAudio.audioSource.clip == agent.config.walkSound) agent.agentAudio.Run();
 
-           agent.navAgent.SetDestination(player.transform.position);
+            agent.navAgent.SetDestination(player.transform.position);
             
             
         }
