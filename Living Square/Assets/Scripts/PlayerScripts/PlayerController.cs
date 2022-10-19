@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour{
 	public GameObject aMainCamera;
 	public GameObject EtherealPrefab;
 	private GameObject EtherealInstance;
+	private GameObject holdArea, interactionArea;
 	private PickUpController pickupController;
 	private Transform groundCheck;
 	//layer 9 is ground
@@ -64,6 +65,10 @@ public class PlayerController : MonoBehaviour{
 
 		// camera position
 		originalCameraPos = aMainCamera.transform.localPosition;
+
+		// get hold area and interaction area game objects
+		holdArea = aMainCamera.transform.GetChild(0).gameObject;
+		interactionArea = aMainCamera.transform.GetChild(1).gameObject;
     }
 
 
@@ -191,6 +196,8 @@ public class PlayerController : MonoBehaviour{
 		// 8 is Player layer
 		// 11 is Ethereal layer
 		aMainCamera.layer = isEthereal ? 11 : 8;
+		holdArea.layer = isEthereal ? 11 : 8;
+		interactionArea.layer = isEthereal ? 11 : 8;
 
 		// Reset timer
 		etherealTimer = DURATION;
