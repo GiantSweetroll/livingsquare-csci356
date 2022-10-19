@@ -43,6 +43,15 @@ public class PlayerReset : MonoBehaviour
 	private Rect buttonBox1;
 	private Rect buttonBox2;
 	private Rect buttonBox3;
+	
+	// Game over messages
+	private static System.Random random = new System.Random();
+	[SerializeField]
+	private string[] gameOverMessages = {
+		"YOU\nFAILED",
+		"GAME\nOVER",
+		"WASTED"
+	};
 
     void Start()
     {
@@ -106,6 +115,8 @@ public class PlayerReset : MonoBehaviour
 	{
 		if(col.gameObject.tag == "Player")
 		{		
+			int index = random.Next(gameOverMessages.Length);
+			message = gameOverMessages[index];
 			Time.timeScale = 0.0f;
 			Cursor.lockState = CursorLockMode.None;
 			menuActive = true;

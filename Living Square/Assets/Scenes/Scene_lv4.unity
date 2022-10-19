@@ -726,6 +726,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleFont: {fileID: 0}
   menuFont: {fileID: 0}
+  gameOverMessages:
+  - YOU FAILED
+  - 'GAME
+
+    OVER'
+  - WASTED
 --- !u!64 &132390773
 MeshCollider:
   m_ObjectHideFlags: 0
