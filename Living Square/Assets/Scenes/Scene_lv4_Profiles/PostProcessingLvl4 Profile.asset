@@ -96,7 +96,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.48
+    value: 1.8
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -114,7 +114,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 1
+    value: 1.98
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -189,7 +189,7 @@ MonoBehaviour:
     defaultState: 1
   tonemapper:
     overrideState: 1
-    value: 0
+    value: 2
   toneCurveToeStrength:
     overrideState: 0
     value: 0
@@ -270,11 +270,11 @@ MonoBehaviour:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0.031230481}
   gamma:
-    overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: -0.26233605}
+    overrideState: 0
+    value: {x: 1, y: 1, z: 1, w: 0.09369155}
   gain:
     overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: -0.4622112}
+    value: {x: 1, y: 1, z: 1, w: -0.449719}
   masterCurve:
     overrideState: 0
     value:
