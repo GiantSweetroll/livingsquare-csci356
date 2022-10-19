@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitleMenuGUI : MonoBehaviour
+public class CreditScreen : MonoBehaviour
 {
-	//flags
-	private bool levelSelectActive = false;
-
 	//working area
 	private int halfWidthStart;
 	private int halfHeightStart;
@@ -26,17 +23,20 @@ public class TitleMenuGUI : MonoBehaviour
 	private Color menuColour = new Color(1,1,1,1);
 	private Color menuHoverColour = new Color(0.9f,0.5f,0,1);
 
+	//credit settings
+	public Font creditFont;
+	private Color creditColour = new Color(0.9f,0.6f,0,1);
 
 	//title style
 	private GUIStyle titleStyle = new GUIStyle();
 	//menu style
 	private GUIStyle menuStyle = new GUIStyle();
+	//credit style
+	private GUIStyle creditStyle = new GUIStyle();
 	//title and menu box
 	private Rect titleBox;
 	private Rect buttonBox1;
 	private Rect buttonBox2;
-	private Rect buttonBox3;
-	private Rect buttonBox4;
 
 	void Start(){
 		//centered box on screen
@@ -70,12 +70,17 @@ public class TitleMenuGUI : MonoBehaviour
 		aTex.Apply(false);
 		menuStyle.hover.background = aTex;
 
+		//settings for credit
+		creditStyle.font = creditFont;
+		creditStyle.fontSize = 20;
+		creditStyle.alignment = TextAnchor.UpperCenter;
+		creditStyle.normal.textColor = creditColour;
+		creditStyle.normal.background = Texture2D.blackTexture;
+
 		//create title and menu box area
 		titleBox = new Rect(0, 0, workingAreaWidth, 200);
-		buttonBox1 = new Rect(0, 250, workingAreaWidth, 25);
-		buttonBox2 = new Rect(0, 300, workingAreaWidth, 25);
-		buttonBox3 = new Rect(0, 350, workingAreaWidth, 25);
-		buttonBox4 = new Rect(0, 400, workingAreaWidth, 25);
+		buttonBox1 = new Rect(0, 180, workingAreaWidth, 25);
+		buttonBox2 = new Rect(0, 390, workingAreaWidth, 25);
 	}
 
 	void OnGUI(){
@@ -83,45 +88,12 @@ public class TitleMenuGUI : MonoBehaviour
 		GUI.BeginGroup(
 			new Rect(halfWidthStart, halfHeightStart, workingAreaWidth, workingAreaHeight)
 		);
+		GUI.Label(titleBox, "THE END\nCREDITS", titleStyle);
 
-		if(levelSelectActive){
-			GUI.Label(titleBox, "LEVEL\nSELECT", titleStyle);
-			if(GUI.Button(buttonBox1, "LEVEL 1", menuStyle)){
-				SceneManager.LoadScene("Scene_lv3");
-			}
+		GUI.Label(buttonBox1, "Jesse Surridge\nRaymond King\nGardyan Priangga Akbar\nNicholas Arthur\nLyon Fan\nJosh Hogan", creditStyle);
 
-			if(GUI.Button(buttonBox2, "LEVEL 2", menuStyle)){
-				SceneManager.LoadScene("Scene_lv4");
-			}
-
-			if(GUI.Button(buttonBox3, "RETURN", menuStyle)){
-				levelSelectActive = false;
-			}
-		}
-		else{
-			//Title label
-			GUI.Label(titleBox, "PROJECT\nETHEREAL", titleStyle);
-
-			if(GUI.Button(buttonBox1, "START", menuStyle)){
-				//lighting may not generate in editor debug mode when loading scene
-				//to fix (important go to "Scene_lvl1" first):  
-				//Windows > Rendering > lighting settings > tick Auto Generate
-				SceneManager.LoadScene("Scene_lv3");
-			}
-
-			if(GUI.Button(buttonBox2, "LEVEL SELECT", menuStyle)){
-				levelSelectActive = true;
-			}
-
-			if(GUI.Button(buttonBox3, "CREDITS", menuStyle)){
-				SceneManager.LoadScene("CreditScene");
-			}
-
-			if(GUI.Button(buttonBox4, "QUIT", menuStyle)){
-				//this function is ignored by the debug editor and works only when
-				// as a standalone application
-				Application.Quit();
-			}
+		if(GUI.Button(buttonBox2, "RETURN", menuStyle)){
+			SceneManager.LoadScene("TitleMenu");
 		}
 
 		GUI.EndGroup();
