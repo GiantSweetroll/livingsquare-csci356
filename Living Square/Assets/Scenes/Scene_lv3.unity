@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300658, g: 0.4921953, b: 0.57192475, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300616, g: 0.49219483, b: 0.57192373, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1431,6 +1431,7 @@ GameObject:
   - component: {fileID: 351685685}
   - component: {fileID: 351685684}
   - component: {fileID: 351685683}
+  - component: {fileID: 351685688}
   m_Layer: 0
   m_Name: Pressure Plate Cube
   m_TagString: Pickable
@@ -1528,6 +1529,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351685688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351685682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791d9c6ea8e84db4e863f2c3d8d90e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 2
 --- !u!1 &357988164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,6 +2777,7 @@ GameObject:
   - component: {fileID: 717533818}
   - component: {fileID: 717533817}
   - component: {fileID: 717533816}
+  - component: {fileID: 717533821}
   m_Layer: 0
   m_Name: Pressure Plate Cube (3)
   m_TagString: Pickable
@@ -2860,6 +2875,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717533821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717533815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791d9c6ea8e84db4e863f2c3d8d90e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 1
 --- !u!1 &732574685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +3976,7 @@ GameObject:
   - component: {fileID: 1057338674}
   - component: {fileID: 1057338673}
   - component: {fileID: 1057338672}
+  - component: {fileID: 1057338677}
   m_Layer: 0
   m_Name: Pressure Plate Cube (2)
   m_TagString: Pickable
@@ -4045,6 +4074,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057338677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057338671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791d9c6ea8e84db4e863f2c3d8d90e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 4
 --- !u!1 &1062401798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4338,6 +4380,7 @@ GameObject:
   - component: {fileID: 1099359129}
   - component: {fileID: 1099359128}
   - component: {fileID: 1099359127}
+  - component: {fileID: 1099359132}
   m_Layer: 0
   m_Name: Pressure Plate Cube (4)
   m_TagString: Pickable
@@ -4435,6 +4478,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1099359132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099359126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791d9c6ea8e84db4e863f2c3d8d90e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 3
 --- !u!1 &1110404578
 GameObject:
   m_ObjectHideFlags: 0
