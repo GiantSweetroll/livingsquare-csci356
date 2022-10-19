@@ -187,6 +187,11 @@ public class PlayerController : MonoBehaviour{
 			charAnim.SetBool("casting", isEthereal);
 		}
 
+		// Change camera layer
+		// 8 is Player layer
+		// 11 is Ethereal layer
+		aMainCamera.layer = isEthereal ? 11 : 8;
+
 		// Reset timer
 		etherealTimer = DURATION;
 	}
