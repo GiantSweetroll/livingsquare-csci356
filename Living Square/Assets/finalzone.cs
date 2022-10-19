@@ -21,7 +21,6 @@ public class finalzone : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Player")
 		{
-			Debug.Log("Test Worked!");
 			anim.SetTrigger("close");
 		}
 	}
